@@ -12,11 +12,11 @@
     <title>Customniture | @yield('title')</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="../../assets/client-page/img/core-img/favicon.ico">
+    <link rel="icon" href="{{ asset('/assets/client-page/img/core-img/favicon.ico') }}">
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="../../assets/client-page/css/core-style.css">
-    <link rel="stylesheet" href="../../assets/client-page/style.css">
+    <link rel="stylesheet" href="{{ asset('assets/client-page/css/core-style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('assets/client-page/style.css') }}" type="text/css">
 
 </head>
 
