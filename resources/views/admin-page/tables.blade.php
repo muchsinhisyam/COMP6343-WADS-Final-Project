@@ -1,11 +1,9 @@
 @extends('templates/admin-template')
 @section('title', 'Tables')
-
 @section('content')
-    <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-
+    <!-- <link href="{{ asset('assets/admin-page/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet"> -->
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
@@ -503,3 +501,10 @@
 </div>
 <!-- End of Main Content -->
 @endsection
+
+<!-- Page level plugins-->
+<!-- <script src="{{ asset('/assets/admin-page/vendor/datatables/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/assets/admin-page/vendor/datatables/dataTables.bootstrap4.min.js') }}" type="text/javascript"></script> -->
+
+<!-- Page level custom scripts-->
+<!-- <script src="{{ asset('assets/admin-page/js/demo/datatables-demo.js') }}"></script> -->
