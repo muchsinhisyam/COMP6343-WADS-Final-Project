@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Client-Page Routing
 Route::get('/', function () {
     return view('client-page/main');
 });
@@ -35,4 +36,25 @@ Route::get('/checkout', function () {
 
 Route::get('/favourite', function () {
     return view('client-page/favourite');
+});
+
+Route::get('/login', function () {
+    return view('register/login');
+});
+
+Route::get('/register', function () {
+    return view('register/register');
+});
+
+// Admin-Page Routing
+Route::get('/admin', function () {
+    return view('admin-page/dashboard');
+});
+
+Route::get('/admin/charts', function () {
+    return view('admin-page/charts');
+});
+
+Route::get('/admin/tables', function () {
+    return view('admin-page/tables');
 });

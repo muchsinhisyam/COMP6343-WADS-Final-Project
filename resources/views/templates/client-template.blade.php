@@ -32,7 +32,7 @@
                     <div class="search-content">
                         <form action="#" method="get">
                             <input type="search" name="search" id="search" placeholder="Type your keyword...">
-                            <button type="submit"><img src="../../assets/client-page/img/core-img/search.png" alt=""></button>
+                            <button type="submit"><img src="{{ asset('/assets/client-page/img/core-img/search.png')}}" alt=""></button>
                         </form>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="/"><img src="../../assets/client-page/img/core-img/logo.png" alt=""></a>
+                <a href="/"><img src="{{ asset('/assets/client-page/img/core-img/logo.png')}}" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -64,7 +64,7 @@
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="/"><img src="../../assets/client-page/img/core-img/logo.png" alt=""></a>
+                <a href="/"><img src="{{ asset('/assets/client-page/img/core-img/logo.png')}}" alt=""></a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
@@ -83,9 +83,9 @@
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="/cart" class="cart-nav"><img src="../../assets/client-page/img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
-                <a href="/favourite" class="fav-nav"><img src="../../assets/client-page/img/core-img/favorites.png" alt=""> Favourite</a>
-                <a href="#" class="search-nav"><img src="../../assets/client-page/img/core-img/search.png" alt=""> Search</a>
+                <a href="/cart" class="cart-nav"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""> Cart <span>(0)</span></a>
+                <a href="/favourite" class="fav-nav"><img src="{{ asset('/assets/client-page/img/core-img/favorites.png')}}" alt=""> Favourite</a>
+                <a href="#" class="search-nav"><img src="{{ asset('/assets/client-page/img/core-img/search.png')}}" alt=""> Search</a>
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">
@@ -134,7 +134,7 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="/"><img src="../../assets/client-page/img/core-img/logo2.png" alt=""></a>
+                            <a href="/"><img src="{{ asset('/assets/client-page/img/core-img/logo2.png')}}" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -178,15 +178,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- ##### Footer Area End ##### -->
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
-    <script src="../../assets/client-page/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="{{ asset('/assets/client-page/js/jquery/jquery-2.2.4.min.js')}}"></script>
     <!-- Popper js -->
-    <script src="../../assets/client-page/js/popper.min.js"></script>
+    <script src="{{ asset('/assets/client-page/js/popper.min.js')}}"></script>
     <!-- Bootstrap js -->
-    <script src="../../assets/client-page/js/bootstrap.min.js"></script>
+    <script src="{{ asset('/assets/client-page/js/bootstrap.min.js')}}"></script>
     <!-- Plugins js -->
-    <script src="../../assets/client-page/js/plugins.js"></script>
+    <script src="{{ asset('/assets/client-page/js/plugins.js')}}"></script>
     <!-- Active js -->
-    <script src="../../assets/client-page/js/active.js"></script>
+    <script src="{{ asset('/assets/client-page/js/active.js')}}"></script>
 
 </body>
 
