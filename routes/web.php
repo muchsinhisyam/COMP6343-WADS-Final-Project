@@ -58,3 +58,6 @@ Route::get('/admin/charts', function () {
 Route::get('/admin/tables', function () {
     return view('admin-page/tables');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
