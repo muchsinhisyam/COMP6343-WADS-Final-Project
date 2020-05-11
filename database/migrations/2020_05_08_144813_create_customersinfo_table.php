@@ -17,7 +17,9 @@ class CreateCustomersinfoTable extends Migration
             $table->id();
             $table->string("name");
             $table->text("address");
-            $table->string("email");
+            $table->date("dob");
+            $table->boolean("gender");
+            $table->string("role");
             $table->string("telpno");
             $table->string("password");
             $table->timestamps();

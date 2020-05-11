@@ -23,7 +23,6 @@ class CreateStaffsinfoTable extends Migration
             $table->string("telpno");
             $table->string("password");
             $table->timestamps();
-
         });
     }
 

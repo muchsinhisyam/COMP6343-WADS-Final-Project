@@ -21,5 +21,5 @@ Route::post('register', 'API\RegisterController@register');
 // });
 
 Route::middleware('auth:api')->group( function () {
-	Route::resource('furniture', 'API\FurnitureController');
+	Route::resource('products', 'API\ProductController');
 });

@@ -24,18 +24,15 @@ class RegisterController extends BaseController
             'c_password' => 'required|same:password',
         ]);
 
-
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());       
         }
-
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
-
 
         return $this->sendResponse($success, 'User registered successfully.');
     }
