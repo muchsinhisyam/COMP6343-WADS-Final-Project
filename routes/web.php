@@ -39,11 +39,11 @@ Route::get('/favourite', function () {
 });
 
 Route::get('/login', function () {
-    return view('register/login');
+    return view('auth/login');
 });
 
 Route::get('/register', function () {
-    return view('register/register');
+    return view('auth/register');
 });
 
 // Admin-Page Routing
@@ -59,5 +59,7 @@ Route::get('/admin/tables', function () {
     return view('admin-page/tables');
 });
 Auth::routes();
+
+// Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');

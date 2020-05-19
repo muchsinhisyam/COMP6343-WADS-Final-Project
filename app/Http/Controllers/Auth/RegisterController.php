@@ -71,8 +71,8 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function showRegistrationForm()
-    {
-        return view('register/register');
-    }
+    // public function showRegistrationForm()
+    // {
+    //     return view('auth/register');
+    // }
 }
