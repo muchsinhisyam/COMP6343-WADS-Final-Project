@@ -58,13 +58,14 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Components</span>
+          <span>Products</span>
         </a>
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Sub-Components:</h6>
-            <a class="collapse-item" href="#">Components A</a>
-            <a class="collapse-item" href="#">Components B</a>
+            <a class="collapse-item" href="/admin/insert-products">Insert</a>
+            <a class="collapse-item" href="/admin/products">View Data</a>
+            <a class="collapse-item" href="/admin/products-photo">View Photo</a>
           </div>
         </div>
       </li>
@@ -72,13 +73,13 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Components</span>
+          <span>Clients</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Sub-Components:</h6>
-            <a class="collapse-item" href="#">Components A</a>
-            <a class="collapse-item" href="#">Components B</a>
+            <a class="collapse-item" href="#">Insert</a>
+            <a class="collapse-item" href="#">View</a>
           </div>
         </div>
       </li>
@@ -86,7 +87,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
+      {{-- <!-- Heading -->
       <div class="sidebar-heading">
         Addons
       </div>
@@ -106,7 +107,7 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider d-none d-md-block"> --}}
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -129,18 +130,6 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-
-          <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">

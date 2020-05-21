@@ -51,12 +51,16 @@ Route::get('/admin', function () {
     return view('admin-page/dashboard');
 });
 
-Route::get('/admin/charts', function () {
-    return view('admin-page/charts');
+Route::get('/admin/products', function () {
+    return view('admin-page/view-products');
 });
 
-Route::get('/admin/tables', function () {
-    return view('admin-page/tables');
+Route::get('/admin/insert-products', function () {
+    return view('admin-page/insert-products');
+});
+
+Route::get('/admin/products-photo', function () {
+    return view('admin-page/view-products-photo');
 });
 
 Auth::routes();
