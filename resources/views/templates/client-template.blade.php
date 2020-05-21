@@ -17,7 +17,6 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{{ asset('assets/client-page/css/core-style.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/client-page/style.css') }}" type="text/css">
-
 </head>
 
 <body>
@@ -69,17 +68,34 @@
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
+                    @guest
+                    @else
+                    <li class="active">
+                        <a>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+                    </li>
+                    @endguest
                     <li class="active"><a href="/">Home</a></li>
                     <li><a href="/products">Products</a></li>
-                    <li><a href="/product-details">Products Detail</a></li>
+                    <li><a href="/orders">Orders</a></li>
                     <li><a href="/cart">Cart</a></li>
                     <li><a href="/checkout">Checkout</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
+                {{-- <a href="#" class="btn amado-btn active">New this week</a> --}}
+                @guest
+                    <a class="btn amado-btn mb-15" href="{{ route('login') }}">{{ __('Login') }}</a>
+                @else 
+                    <a class="btn amado-btn mb-15" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endguest
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">

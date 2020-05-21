@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('templates/register-template')
+@section('title', 'Login')
 
 @section('content')
+<!-- Sing in  Form -->
 <section class="sign-in">
     <div class="container">
         <div class="signin-content">
@@ -11,13 +13,11 @@
 
             <div class="signin-form">
                 <h2 class="form-title">Login</h2>
-                <form method="POST" class="register-form" id="login-form" action="{{ route('login') }}">
+                <form method="POST" class="register-form" id="login-form">
                     @csrf
-
                     <div class="form-group">
-                        <!-- {{ __('E-Mail Address') }} -->
-                        <label for="email" class="zmdi zmdi-account material-icons-name"></label>
-
+                         <!-- {{ __('E-Mail Address') }} -->
+                        <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
                         <div class="col-md-6">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email"/>
 
@@ -28,11 +28,9 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="form-group">
-                            <!-- {{ __('Password') }} -->
+                        <!-- {{ __('Password') }} -->
                         <label for="password" class="zmdi zmdi-lock"></label>
-
                         <div class="col-md-6">
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"  placeholder="Password"/>
 
@@ -43,20 +41,16 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <!-- <div class="col-md-6 offset-md-4">
-                            <div class="form-check"> -->
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" class=agree-term {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            <!-- </div>
-                        </div> -->
+                        <input type="checkbox" name="remember" id="remember" class="agree-term {{ old('remember') ? 'checked' : '' }}" />
+                        <label for="remember-me" class="label-agree-term">
+                            <span><span></span></span>Remember me
+                        </label>
                     </div>
                     <div class="form-group form-button">
                         <input type="submit" name="login" id="login" class="form-submit" value="Login"/>
+                    </div>
+                    <div class="form-group form-button">
                         @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
@@ -64,7 +58,6 @@
                         @endif
                     </div>
                 </form>
-                </div>
             </div>
         </div>
     </div>

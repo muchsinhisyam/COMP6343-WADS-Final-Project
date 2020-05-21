@@ -153,7 +153,7 @@
                             <div class="product-meta-data">
                                 <div class="line"></div>
                                 <p class="product-price">$180</p>
-                                <a href="product-details.html">
+                                <a href="/product-details">
                                     <h6>Modern Chair</h6>
                                 </a>
                             </div>
@@ -167,7 +167,7 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
                                 <div class="cart">
-                                    <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
+                                    <a href="/cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +190,7 @@
                             <div class="product-meta-data">
                                 <div class="line"></div>
                                 <p class="product-price">$180</p>
-                                <a href="product-details.html">
+                                <a href="/product-details">
                                     <h6>Modern Chair</h6>
                                 </a>
                             </div>
@@ -204,7 +204,7 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
                                 <div class="cart">
-                                    <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
+                                    <a href="/cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -227,7 +227,7 @@
                             <div class="product-meta-data">
                                 <div class="line"></div>
                                 <p class="product-price">$180</p>
-                                <a href="product-details.html">
+                                <a href="/product-details">
                                     <h6>Modern Chair</h6>
                                 </a>
                             </div>
@@ -241,7 +241,7 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
                                 <div class="cart">
-                                    <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
+                                    <a href="/cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -264,7 +264,7 @@
                             <div class="product-meta-data">
                                 <div class="line"></div>
                                 <p class="product-price">$180</p>
-                                <a href="product-details.html">
+                                <a href="/product-details">
                                     <h6>Modern Chair</h6>
                                 </a>
                             </div>
@@ -278,7 +278,7 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
                                 <div class="cart">
-                                    <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
+                                    <a href="/cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -301,7 +301,7 @@
                             <div class="product-meta-data">
                                 <div class="line"></div>
                                 <p class="product-price">$180</p>
-                                <a href="product-details.html">
+                                <a href="/product-details">
                                     <h6>Modern Chair</h6>
                                 </a>
                             </div>
@@ -315,7 +315,7 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
                                 <div class="cart">
-                                    <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
+                                    <a href="/cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -338,7 +338,7 @@
                             <div class="product-meta-data">
                                 <div class="line"></div>
                                 <p class="product-price">$180</p>
-                                <a href="product-details.html">
+                                <a href="/product-details">
                                     <h6>Modern Chair</h6>
                                 </a>
                             </div>
@@ -352,7 +352,7 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
                                 <div class="cart">
-                                    <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
+                                    <a href="/cart" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
                                 </div>
                             </div>
                         </div>

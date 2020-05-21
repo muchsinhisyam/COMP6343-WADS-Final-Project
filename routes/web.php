@@ -58,8 +58,8 @@ Route::get('/admin/charts', function () {
 Route::get('/admin/tables', function () {
     return view('admin-page/tables');
 });
+
 Auth::routes();
 
 // Auth::routes(['verify' => true]);
-
 Route::get('/home', 'HomeController@index')->name('home');
