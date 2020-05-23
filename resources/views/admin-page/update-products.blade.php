@@ -6,54 +6,49 @@
       {{-- <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
       </div> --}}
-      @if(session('success'))
-      <div class="alert alert-success" role="alert">
-        {{session('success')}}
-      </div>
-      @endif
       <div class="card-body">
-        <form action="/admin/insert-products" method="POST">
+        <form action="/admin/products/{{$info->id}}/update" method="POST">
           {{csrf_field()}}
             <div class="form-group">
               <label for="product_name">Name</label>
-              <input id="text" type="product_name" class="form-control" name="product_name"  placeholder="Product's Name"/>
+              <input id="text" type="product_name" class="form-control" name="product_name"  placeholder="Product's Name" value="{{$info->product_name}}"/>
             </div>
             <div class="form-group">
               <label for="price">Price</label>
-              <input id="price "type="text" class="form-control" name="price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Product's Price" required/>
+              <input id="price "type="text" class="form-control" name="price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Product's Price" required value="{{$info->price}}"/>
             </div>
             <div class="form-group">
               <label for="qty">Stock</label>
-              <input id="qty"type="text" class="form-control" name="qty" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Product's Qty" required/>
+              <input id="qty"type="text" class="form-control" name="qty" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Product's Qty" required value="{{$info->qty}}"/>
             </div>
             <div class="form-group">
               <label for="category">Category</label>
               <select class="form-control" id="category" name="category" required>
-                <option>Chairs</option>
-                <option>Beds</option>
-                <option>Accesories</option>
-                <option>Furniture</option>
-                <option>Tables</option>
+                <option  @if($info->category=="Chairs") selected @endif>Chairs</option>
+                <option  @if($info->category=="Beds") selected @endif>Beds</option>
+                <option  @if($info->category=="Accesories") selected @endif>Accesories</option>
+                <option  @if($info->category=="Furniture") selected @endif>Furniture</option>
+                <option  @if($info->category=="Tables") selected @endif>Tables</option>
               </select>
             </div>
             <div class="form-group">
               <label for="color">Color</label>
-              <input id="color" type="text" class="form-control" name="color"  placeholder="Product's Color"/>
+              <input id="color" type="text" class="form-control" name="color"  placeholder="Product's Color" value="{{$info->color}}"/>
             </div>
             <div class="form-group">
               <label for="description">Description</label>
-              <textarea class="form-control" id="description" name=description rows="3" placeholder="Product's Description"></textarea>
+              <textarea class="form-control" id="description" name=description rows="3" placeholder="Product's Description">{{$info->description}}</textarea>
             </div>
             <div class="form-group">
               <label for="description">Photo</label>
               <div class="input-group mb-3">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="file" name="file[]" multiple>
-                  <label class="custom-file-label" for="file">Choose Photo (.jpg/.jpeg/.png)</label>
+                  <input type="file" class="custom-file-input" id="inputGroupFile02">
+                  <label class="custom-file-label" for="inputGroupFile02">Choose Photo (.jpg/.jpeg/.png)</label>
                 </div>
               </div>
             </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary">Update</button>
         </form>
       </div>
     </div>

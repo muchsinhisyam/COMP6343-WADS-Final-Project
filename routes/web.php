@@ -59,9 +59,20 @@ Route::get('/admin/insert-products', function () {
     return view('admin-page/insert-products');
 });
 
+// Route::get('/admin/update-products', function () {
+//     return view('admin-page/update-products');
+// });
+
 Route::get('/admin/products-photo', function () {
     return view('admin-page/view-products-photo');
 });
+
+Route::get('/admin/products', 'AdminController@index');
+Route::post('/admin/insert-products', 'AdminController@create'); // Ask
+Route::get('/admin/products/{id}/update-products', 'AdminController@edit');
+Route::post('/admin/products/{id}/update', 'AdminController@update');
+Route::get('/admin/products/{id}/delete', 'AdminController@delete');
+
 
 Auth::routes();
 
