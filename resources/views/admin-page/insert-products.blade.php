@@ -12,7 +12,7 @@
       </div>
       @endif
       <div class="card-body">
-        <form action="/admin/insert-products" method="POST">
+        <form action="/admin/insert-products" method="POST" enctype="multipart/form-data">
           {{csrf_field()}}
             <div class="form-group">
               <label for="product_name">Name</label>
@@ -48,7 +48,7 @@
               <label for="description">Photo</label>
               <div class="input-group mb-3">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="file" name="file[]" multiple>
+                  <input type="file" class="custom-file-input" id="file" name="file[]" accept="image/jpg, image/jpeg, image/png" multiple>
                   <label class="custom-file-label" for="file">Choose Photo (.jpg/.jpeg/.png)</label>
                 </div>
               </div>

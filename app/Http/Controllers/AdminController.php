@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use File;
 
 class AdminController extends Controller
 {
@@ -16,18 +17,20 @@ class AdminController extends Controller
     public function create(Request $request)
     { 
         $input = $request->all();
-        Product::create($input);
+        $id = Product::create($input)->id;
 
-        if ($request->hasFile('file')) {
-            foreach ($request->file as $file) {
-                $filename = $file->getClientOriginalName();
-                $file->storeAs('public/images', $filename);
-                $photo = new Photos;
-                $photo->image_name = $filename;
-                $photo->save();
-            }
+        // if ($request->hasFile('file')) {
+        foreach ($request->file as $file) {
+            $filename = $file->getClientOriginalName();
+            // $file->storeAs('public/images', $filename);
+            $path = public_path().'/images';
+            $file->move($path, $filename);
+            $photo = new \App\Photos;
+            $photo->product_id = $id;
+            $photo->image_name = $filename;
+            $photo->save();
         }
-
+        // }
         return redirect('/admin/insert-products')->with('success', 'Product successfully added'); 
     }
 

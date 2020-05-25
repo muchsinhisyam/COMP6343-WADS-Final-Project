@@ -22,10 +22,12 @@
               </tr>
             </tfoot>
             <tbody>
+            @foreach($info_s as $info)
               <tr>
-                <td></td>
-                <td></td>
+                <td>{{ $info->product_id }}</td>
+                <td><img class="images" id="image" height="250" width="250" src="{{ asset('images/'.$info->image_name ) }}" /></td>
               </tr>
+            @endforeach
             </tbody>
           </table>
         </div>

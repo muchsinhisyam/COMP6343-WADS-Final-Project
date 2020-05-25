@@ -72,7 +72,7 @@ Route::post('/admin/insert-products', 'AdminController@create'); // Ask
 Route::get('/admin/products/{id}/update-products', 'AdminController@edit');
 Route::post('/admin/products/{id}/update', 'AdminController@update');
 Route::get('/admin/products/{id}/delete', 'AdminController@delete');
-
+Route::get('/admin/products-photo', 'PhotoController@index');
 
 Auth::routes();
 
