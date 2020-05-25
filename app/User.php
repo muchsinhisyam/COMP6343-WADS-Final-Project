@@ -9,9 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 // implements MustVerifyEmail
 
-class User extends Authenticatable 
+class User extends Authenticatable
 {
     use  HasApiTokens, Notifiable;
+    // Default role = customer role
+    const defaultRole = 'customer';
 
     /**
      * The attributes that are mass assignable.

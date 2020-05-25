@@ -13,57 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Auth Routing
+
+
 // Client-Page Routing
-Route::get('/', function () {
-    return view('client-page/main');
-});
-
-Route::get('/products', function () {
-    return view('client-page/products');
-});
-
-Route::get('/product-details', function () {
-    return view('client-page/product-details');
-});
-
-Route::get('/cart', function () {
-    return view('client-page/cart');
-});
-
-Route::get('/checkout', function () {
-    return view('client-page/checkout');
-});
-
-Route::get('/favourite', function () {
-    return view('client-page/favourite');
-});
-
-Route::get('/login', function () {
-    return view('auth/login');
-});
-
-Route::get('/register', function () {
-    return view('auth/register');
-});
+Route::get('/', 'HomeController@index')->name('client-page/main');
+Route::get('/products', 'HomeController@view_products')->name('client-page/products');
+Route::get('/product-details', 'HomeController@view_product_details')->name('client-page/product-details');
+Route::get('/cart', 'HomeController@view_cart')->name('client-page/cart');
+Route::get('/checkout', 'HomeController@view_checkout')->name('client-page/checkout');
+// Route::get('/favourite', 'HomeController@view_favourite')->name('client-page/favourite');
+Route::get('/login', 'Auth/LoginController@showLoginForm')->name('auth/login');
+Route::get('/register', 'Auth/RegisterController@showRegistrationForm')->name('auth/register');
 
 // Admin-Page Routing
-Route::get('/admin', function () {
-    return view('admin-page/dashboard');
-});
-
-Route::get('/admin/products', function () {
-    return view('admin-page/view-products');
-});
-
-Route::get('/admin/insert-products', function () {
-    return view('admin-page/insert-products');
-});
-
-Route::get('/admin/products-photo', function () {
-    return view('admin-page/view-products-photo');
-});
+Route::get('/admin', 'AdminController@index')
+    ->name('admin-page/dashboard')
+    ->middleware('is_admin');
+Route::get('/admin/products', 'AdminController@view_products')
+    ->name('admin-page/view-products')
+    ->middleware('is_admin');
+Route::get('/admin/products-photo', 'AdminController@view_products_photo')
+    ->name('admin-page/view-products-photo')
+    ->middleware('is_admin');
+Route::get('/admin/insert-products', 'AdminController@view_insert_products')
+    ->name('admin-page/insert-products')
+    ->middleware('is_admin');
 
 Auth::routes();
-
 // Auth::routes(['verify' => true]);
-Route::get('/home', 'HomeController@index')->name('home');
