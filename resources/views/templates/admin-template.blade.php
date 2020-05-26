@@ -63,9 +63,10 @@
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Sub-Components:</h6>
-            <a class="collapse-item" href="/admin/insert-products">Insert</a>
-            <a class="collapse-item" href="/admin/products">View Data</a>
-            <a class="collapse-item" href="/admin/products-photo">View Photo</a>
+            <a class="collapse-item" href="/admin/insert-products-form">Create Products</a>
+            <a class="collapse-item" href="/admin/products">View Products</a>
+            <a class="collapse-item" href="/admin/insert-product-photo-form">Insert Product's Photo</a>
+            <a class="collapse-item" href="/admin/products-photo">View Products Photo</a>
           </div>
         </div>
       </li>
@@ -73,13 +74,13 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Clients</span>
+          <span>Users</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Sub-Components:</h6>
-            <a class="collapse-item" href="#">Insert</a>
-            <a class="collapse-item" href="#">View</a>
+            <a class="collapse-item" href="#">Create User</a>
+            <a class="collapse-item" href="#">View Users</a>
           </div>
         </div>
       </li>
@@ -264,8 +265,10 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                  {{ Auth::user()->name }}
+                </span>
+                {{-- <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> --}}
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -334,7 +337,12 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="/login">Logout</a>
+          <a class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
         </div>
       </div>
     </div>
