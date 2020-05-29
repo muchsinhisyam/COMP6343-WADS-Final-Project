@@ -28,7 +28,7 @@
           {{csrf_field()}}
             <div class="form-group">
               <label for="product_name">Name</label>
-              <input id="text" type="product_name" class="form-control" name="product_name"  placeholder="Product's Name"/>
+              <input id="text" type="product_name" class="form-control" name="product_name"  placeholder="Product's Name" required/>
             </div>
             <div class="form-group">
               <label for="price">Price</label>
@@ -41,16 +41,18 @@
             <div class="form-group">
               <label for="category">Category</label>
               <select class="form-control" id="category" name="category" required>
-                <option>Chairs</option>
-                <option>Beds</option>
-                <option>Accesories</option>
-                <option>Furniture</option>
-                <option>Tables</option>
+                @foreach($categories as $category)
+                  <option value="{{$category->category_id}}">{{$category->category_name}}</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">
               <label for="color">Color</label>
-              <input id="color" type="text" class="form-control" name="color"  placeholder="Product's Color"/>
+              <select class="form-control" id="color" name="color" required>
+                @foreach($colors as $color)
+                  <option value="{{$color->color_id}}">{{$color->color_name}}</option>
+                @endforeach
+              </select>
             </div>
             <div class="form-group">
               <label for="description">Description</label>

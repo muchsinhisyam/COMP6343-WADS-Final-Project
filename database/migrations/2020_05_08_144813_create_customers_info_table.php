@@ -13,15 +13,17 @@ class CreateCustomersinfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('customersinfo', function (Blueprint $table) {
+        Schema::create('customer_info', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string("first_name");
+            $table->string("last_name");
+            $table->string("email");
+            $table->integer("phone");
+            $table->string("city");
+            $table->integer("zip_code");
             $table->text("address");
-            $table->date("dob");
-            $table->boolean("gender");
-            $table->string("role");
-            $table->string("telpno");
-            $table->string("password");
             $table->timestamps();
         });
     }
@@ -33,6 +35,6 @@ class CreateCustomersinfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customersinfo');
+        Schema::dropIfExists('customer_info');
     }
 }

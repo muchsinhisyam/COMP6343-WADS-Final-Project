@@ -23,7 +23,7 @@
         </div>
 
         <!-- ##### Single Widget ##### -->
-        <div class="widget brands mb-50">
+        {{-- <div class="widget brands mb-50">
             <!-- Widget Title -->
             <h6 class="widget-title mb-30">Brands</h6>
 
@@ -54,7 +54,7 @@
                     <label class="form-check-label" for="artdeco">Artdeco</label>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- ##### Single Widget ##### -->
         <div class="widget color mb-50">
@@ -91,6 +91,7 @@
                 </div>
             </div>
         </div>
+        <a class="btn amado-btn mb-15" href="#">Search</a>
     </div>
 
     <div class="amado_product_area section-padding-100">
@@ -365,10 +366,10 @@
                     <!-- Pagination -->
                     <nav aria-label="navigation">
                         <ul class="pagination justify-content-end mt-50">
-                            <li class="page-item active"><a class="page-link" href="#">01.</a></li>
-                            <li class="page-item"><a class="page-link" href="#">02.</a></li>
-                            <li class="page-item"><a class="page-link" href="#">03.</a></li>
-                            <li class="page-item"><a class="page-link" href="#">04.</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
                         </ul>
                     </nav>
                 </div>

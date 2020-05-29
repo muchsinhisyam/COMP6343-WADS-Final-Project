@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <div class="cart-title mt-50">
-                        <h2>Shopping Cart</h2>
+                        <h2>Orders</h2>
                     </div>
 
                     <div class="cart-table clearfix">

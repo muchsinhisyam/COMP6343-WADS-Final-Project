@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Photos;
-use Illuminate\Http\Request;
 use App\Product;
+use App\Color;
+use Illuminate\Http\Request;
 use File;
 
 
@@ -24,17 +26,16 @@ class AdminController extends Controller
   {
     $validatedData  =  $request->validate([
       'product_name'  => 'required|max:255',
+      'category' => 'required',
+      'color' => 'required',
       'price' => 'required|digits_between:0,2147483646|numeric',
       'qty' => 'required|digits_between:0,2147483646|numeric',
-      'description' => 'required|max:255',
-      'category' => 'required|max:255|alpha',
-      'color' => 'required|max:255|alpha'
+      'description' => 'required|max:255'
       // Photo Size need to be limited
     ]);
 
     $input = $request->all();
     $id = Product::create($input)->id;
-
     // if ($request->hasFile('file')) {
     foreach ($request->file as $file) {
       $filename = $file->getClientOriginalName();
@@ -70,7 +71,9 @@ class AdminController extends Controller
   public function edit($id)
   {
     $selected_product = Product::find($id);
-    return view('/admin-page/update-products', compact('selected_product'));
+    $colors = Color::all();
+    $categories = Category::all();
+    return view('admin-page/update-product-form', compact('colors', 'categories', 'selected_product'));
   }
 
   public function update(Request $request, $id)
@@ -79,9 +82,7 @@ class AdminController extends Controller
       'product_name'  => 'required|max:255',
       'price' => 'required|digits_between:0,2147483646|numeric',
       'qty' => 'required|digits_between:0,2147483646|numeric',
-      'description' => 'required|max:255',
-      'category' => 'required|max:255|alpha',
-      'color' => 'required|max:255|alpha'
+      'description' => 'required|max:255'
     ]);
 
     $selected_product = Product::find($id);
@@ -116,7 +117,9 @@ class AdminController extends Controller
 
   public function view_insert_products()
   {
-    return view('admin-page/insert-products-form');
+    $colors = Color::all();
+    $categories = Category::all();
+    return view('admin-page/insert-product-form', compact('colors', 'categories'));
   }
 
   public function view_insert_product_photo()

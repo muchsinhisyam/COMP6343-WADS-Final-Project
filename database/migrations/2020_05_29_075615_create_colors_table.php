@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableProducts extends Migration
+class CreateColorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class AlterTableProducts extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('category');
-            $table->string('color');
+        Schema::create('colors', function (Blueprint $table) {
+            $table->id()->unsigned();
+            $table->string('color_name');
+            $table->timestamps();
         });
     }
 
@@ -26,9 +27,6 @@ class AlterTableProducts extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('category');
-            $table->string('color');
-        });
+        Schema::dropIfExists('colors');
     }
 }

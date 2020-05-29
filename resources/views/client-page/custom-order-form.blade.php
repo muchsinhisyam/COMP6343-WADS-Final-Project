@@ -9,7 +9,7 @@
                     <div class="checkout_details_area mt-50 clearfix">
 
                         <div class="cart-title">
-                            <h2>Checkout</h2>
+                            <h2>Custom Order Form</h2>
                         </div>
 
                         <form action="#" method="post">
@@ -53,22 +53,17 @@
                                 <div class="col-12 mb-3">
                                     <textarea name="comment" class="form-control w-100" id="comment" cols="30" rows="10" placeholder="Leave a comment about your order"></textarea>
                                 </div>
+                                <div class="custom-file col-12 mb-3">
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="cart-summary">
-                        <h5>Cart Total</h5>
-                        <ul class="summary-table">
-                            <li><span>subtotal:</span> <span>$140.00</span></li>
-                            <li><span>delivery:</span> <span>Free</span></li>
-                            <li><span>total:</span> <span>$140.00</span></li>
-                            <li><span>payment method:</span> <span>Transfer</span></li>
-                        </ul>
-                        <div class="cart-btn mt-100">
-                            <a href="#" class="btn amado-btn w-100">Checkout</a>
-                        </div>
+                        <a href="#" class="btn amado-btn w-100">Proceed Custom Order</a>
                     </div>
                 </div>
             </div>

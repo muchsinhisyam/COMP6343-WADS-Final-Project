@@ -35,16 +35,18 @@
             <div class="form-group">
               <label for="category">Category</label>
               <select class="form-control" id="category" name="category" required>
-                <option  @if($selected_product->category=="Chairs") selected @endif>Chairs</option>
-                <option  @if($selected_product->category=="Beds") selected @endif>Beds</option>
-                <option  @if($selected_product->category=="Accesories") selected @endif>Accesories</option>
-                <option  @if($selected_product->category=="Furniture") selected @endif>Furniture</option>
-                <option  @if($selected_product->category=="Tables") selected @endif>Tables</option>
+                @foreach($categories as $category)
+                  <option value="{{$category->category_id}}">{{$category->category_name}}</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">
               <label for="color">Color</label>
-              <input id="color" type="text" class="form-control" name="color"  placeholder="Product's Color" value="{{$selected_product->color}}"/>
+              <select class="form-control" id="color" name="color" required>
+                @foreach($colors as $color)
+                  <option value="{{$color->color_id}}">{{$color->color_name}}</option>
+                @endforeach
+              </select>
             </div>
             <div class="form-group">
               <label for="description">Description</label>

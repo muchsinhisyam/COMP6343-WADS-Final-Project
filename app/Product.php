@@ -12,10 +12,21 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'product_name', 'price', 'qty', 'description', 'category', 'color',
+        'product_name', 'color_id', 'category_id', 'price', 'qty', 'description'
     ];
 
-    public function images(){
+    public function images()
+    {
         return $this->hasMany('App\Photos');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany('App\Category');
+    }
+
+    public function colors()
+    {
+        return $this->hasMany('App\Color');
     }
 }

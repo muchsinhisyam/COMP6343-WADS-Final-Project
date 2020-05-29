@@ -80,7 +80,6 @@
                     <li><a href="/products">Products</a></li>
                     <li><a href="/orders">Orders</a></li>
                     <li><a href="/cart">Cart</a></li>
-                    <li><a href="/checkout">Checkout</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
@@ -100,7 +99,6 @@
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
                 <a href="/cart" class="cart-nav"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""> Cart <span>(0)</span></a>
-                <a href="/favourite" class="fav-nav"><img src="{{ asset('/assets/client-page/img/core-img/favorites.png')}}" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="{{ asset('/assets/client-page/img/core-img/search.png')}}" alt=""> Search</a>
             </div>
             <!-- Social Button -->
@@ -123,17 +121,14 @@
                 <!-- Newsletter Text -->
                 <div class="col-12 col-lg-6 col-xl-7">
                     <div class="newsletter-text mb-100">
-                        <h2>Subscribe for a <span>25% Discount</span></h2>
-                        <p>Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi vulputate consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
+                        <h2>Custom Orders are<span> Available!</span></h2>
+                        <p> We officially accept custom furtniture orders. You can now make custom orders to us by filling the form by click the 'Custom Orders' button.</p>
                     </div>
                 </div>
                 <!-- Newsletter Form -->
-                <div class="col-12 col-lg-6 col-xl-5">
+                <div class="col-10 col-lg-6 col-xl-5">
                     <div class="newsletter-form mb-100">
-                        <form action="#" method="post">
-                            <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
-                            <input type="submit" value="Subscribe">
-                        </form>
+                        <a class="btn amado-btn mb-15" href="/custom-order">Custom Order</a>
                     </div>
                 </div>
             </div>
@@ -150,7 +145,7 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="/"><img src="{{ asset('/assets/client-page/img/core-img/logo2.png')}}" alt=""></a>
+                            <a href="/"><img src="{{ asset('/assets/client-page/img/core-img/logo.png')}}" style="width: 75%" height="75%" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -171,16 +166,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                             <a class="nav-link" href="/">Home</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/products">Shop</a>
+                                            <a class="nav-link" href="/products">Products</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/product-details">Product</a>
+                                            <a class="nav-link" href="/custom-order">Custom Order</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="/cart">Cart</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/checkout">Checkout</a>
+                                            <a class="nav-link" href="/favourite">Favourite</a>
                                         </li>
                                     </ul>
                                 </div>
