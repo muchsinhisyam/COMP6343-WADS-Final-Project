@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Color extends Model
 {
     protected $fillable = [
-        'color_id', 'color_name',
+        'id ','color_name',
     ];
 
-    public function product()
+    // public function product()
+    // {
+    //     return $this->belongsTo('App\Product', 'color_id');
+    // }
+
+    public function colors()
     {
-        return $this->belongsTo('App\Product');
+        return $this->hasOne('App\Product', 'color_id');
     }
 }
