@@ -26,20 +26,20 @@ class AdminController extends Controller
   {
     $validatedData  =  $request->validate([
       'product_name'  => 'required|max:255',
-      'category' => 'required',
-      'color' => 'required',
+      'category_id' => 'required',
+      'color_id' => 'required',
       'price' => 'required|digits_between:0,2147483646|numeric',
       'qty' => 'required|digits_between:0,2147483646|numeric',
       'description' => 'required|max:255'
       // Photo Size need to be limited
-    ]);
+    ]); 
 
     $input = $request->all();
+    // return $request->all();
     $id = Product::create($input)->id;
     // if ($request->hasFile('file')) {
     foreach ($request->file as $file) {
       $filename = $file->getClientOriginalName();
-      // $file->storeAs('public/images', $filename);
       $path = public_path() . '/images';
       $file->move($path, $filename);
       $photo = new \App\Photos;
@@ -48,7 +48,7 @@ class AdminController extends Controller
       $photo->save();
     }
     // }
-    return redirect('/admin/insert-products-form')->with('success', 'Product successfully added');
+    return redirect('/admin/insert-product-form')->with('success', 'Product successfully added');
   }
 
   public function insert_product_photo(Request $request)
@@ -73,7 +73,9 @@ class AdminController extends Controller
     $selected_product = Product::find($id);
     $colors = Color::all();
     $categories = Category::all();
-    return view('admin-page/update-product-form', compact('colors', 'categories', 'selected_product'));
+    $selected_color = Color::first()->id;
+    $selected_category = Category::first()->id;
+    return view('admin-page/update-product-form', compact('colors', 'categories', 'selected_product', 'selected_color', 'selected_category'));
   }
 
   public function update(Request $request, $id)
@@ -119,6 +121,8 @@ class AdminController extends Controller
   {
     $colors = Color::all();
     $categories = Category::all();
+    // $selectedColor = Color::first()->id;
+    // $selectedCategory = Category::first()->id;
     return view('admin-page/insert-product-form', compact('colors', 'categories'));
   }
 

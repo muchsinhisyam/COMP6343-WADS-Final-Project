@@ -34,17 +34,17 @@
             </div>
             <div class="form-group">
               <label for="category">Category</label>
-              <select class="form-control" id="category" name="category" required>
+              <select class="form-control" id="category_id" name="category_id" required>
                 @foreach($categories as $category)
-                  <option value="{{$category->category_id}}">{{$category->category_name}}</option>
+                  <option value="{{$category->id}}"  @if($category->id==$selected_category) selected @endif>{{$category->category_name}}</option>
                 @endforeach
               </select>
             </div>
             <div class="form-group">
               <label for="color">Color</label>
-              <select class="form-control" id="color" name="color" required>
+              <select class="form-control" id="color_id" name="color_id" required>
                 @foreach($colors as $color)
-                  <option value="{{$color->color_id}}">{{$color->color_name}}</option>
+                  <option value="{{$color->id}}"  @if($color->id==$selected_color) selected @endif>{{$color->color_name}}</option>
                 @endforeach
               </select>
             </div>

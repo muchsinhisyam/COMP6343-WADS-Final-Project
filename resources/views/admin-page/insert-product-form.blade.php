@@ -39,18 +39,20 @@
               <input id="qty"type="text" class="form-control" name="qty" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Product's Qty" required/>
             </div>
             <div class="form-group">
-              <label for="category">Category</label>
-              <select class="form-control" id="category" name="category" required>
+              <label for="category_id">Category</label>
+              <select class="form-control" id="category_id" name="category_id" required>
+                <!-- <option>None selected</option> -->
                 @foreach($categories as $category)
-                  <option value="{{$category->category_id}}">{{$category->category_name}}</option>
+                  <option value="{{$category->id}}" selected>{{$category->category_name}}</option>
                 @endforeach
               </select>
             </div>
             <div class="form-group">
-              <label for="color">Color</label>
-              <select class="form-control" id="color" name="color" required>
+              <label for="color_id">Color</label>
+              <select class="form-control" id="color_id" name="color_id" required>
+                <!-- <option>None selected</option> -->
                 @foreach($colors as $color)
-                  <option value="{{$color->color_id}}">{{$color->color_name}}</option>
+                  <option value="{{$color->id}}" selected>{{$color->color_name}}</option>
                 @endforeach
               </select>
             </div>
