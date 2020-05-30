@@ -41,12 +41,6 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="remember" id="remember" class="agree-term {{ old('remember') ? 'checked' : '' }}" />
-                        <label for="remember-me" class="label-agree-term">
-                            <span><span></span></span>Remember me
-                        </label>
-                    </div>
                     <div class="form-group form-button">
                         <input type="submit" name="login" id="login" class="form-submit" value="Login"/>
                     </div>

@@ -71,7 +71,7 @@
                     @guest
                     @else
                     <li class="active">
-                        <a>
+                        <a href="/customer-info">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                     </li>
@@ -145,7 +145,7 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="/"><img src="{{ asset('/assets/client-page/img/core-img/logo.png')}}" style="width: 75%" height="75%" alt=""></a>
+                            <a href="/"><img src="{{ asset('/assets/client-page/img/core-img/logo2.png')}}" style="width: 75%" height="75%" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -165,6 +165,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item active">
                                             <a class="nav-link" href="/">Home</a>
                                         </li>
+                                        @guest
+                                        @else
+                                        <li class="nav-item">
+                                            <a class="nav-link"href="/customer-info">User's Info</a>
+                                        </li>
+                                        @endguest
                                         <li class="nav-item">
                                             <a class="nav-link" href="/products">Products</a>
                                         </li>
@@ -173,9 +179,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="/cart">Cart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/favourite">Favourite</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -18,9 +18,9 @@
       </div>
     @endif
 
-    <h1 class="h3 mb-2 text-gray-800">View Products Photo</P></h1>
+    <h1 class="h3 mb-2 text-gray-800">View Users</P></h1>
     <div class="card shadow mb-4">
-      <a href="/admin/insert-product-photo-form" class="btn btn-primary">Insert Product's Photo</a>
+      <a href="/admin/insert-user-form" class="btn btn-primary">Create New User</a>
       {{-- <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
       </div> --}}
@@ -30,27 +30,37 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Product Name</th>
-                <th>Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Email Verified at</th>
+                <th>Password</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
                 <th>ID</th>
-                <th>Product Name</th>
-                <th>Image</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Email Verified at</th>
+                <th>Password</th>
                 <th>Action</th>
               </tr>
             </tfoot>
             <tbody>
-              @foreach($photos as $photo)
+              @foreach($users as $user)
                 <tr>
-                  <td>{{ $photo->id }}</td>
-                  <td>{{ $photo->product->product_name }}</td>
-                  <td><img class="images" id="image" height="300" width="500" src="{{ asset('images/'.$photo->image_name ) }}" /></td>
+                  <td>{{ $user->id }}</td>
+                  <td>{{ $user->name }}</td>
+                  <td>{{ $user->email }}</td>
+                  <td>{{ $user->role }}</td>
+                  <td>{{ $user->email_verified_at }}</td>
+                  <td>{{ $user->password }}</td>
                   <td>
-                    <a href="/admin/products-photo/{{$photo->id}}/delete" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="/admin/users/{{$user->id}}/update-user-form" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/admin/users/{{$user->id}}/delete" class="btn btn-danger btn-sm">Delete</a>
                   </td> 
                 </tr>
               @endforeach

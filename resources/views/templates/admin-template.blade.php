@@ -87,8 +87,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Sub-Components:</h6>
-            <a class="collapse-item" href="#">Create User</a>
-            <a class="collapse-item" href="#">View Users</a>
+            <a class="collapse-item" href="/admin/insert-user-form">Create User</a>
+            <a class="collapse-item" href="/admin/users">View Users</a>
           </div>
         </div>
       </li>
@@ -322,7 +322,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; Costumniture 2020</span>
           </div>
         </div>
       </footer>

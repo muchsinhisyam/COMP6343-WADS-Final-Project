@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CustomerInfo;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -55,5 +56,11 @@ class HomeController extends Controller
     public function view_orders()
     {
         return view('client-page/orders');
+    }
+
+    public function  view_user_info()
+    {
+        // $selected_user = CustomerInfo::find($id);
+        return view('client-page/customer-info');
     }
 }

@@ -6,9 +6,10 @@ use App\Category;
 use App\Photos;
 use App\Product;
 use App\Color;
+use App\User;
 use Illuminate\Http\Request;
 use File;
-
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -65,7 +66,25 @@ class AdminController extends Controller
       $photo->save();
     }
     // }
-    return redirect('/admin/insert-product-photo-form')->with('success', 'Product successfully added');
+    return redirect('/admin/insert-product-photo-form')->with('success', 'Product\'s Photo successfully added');
+  }
+
+  public function insert_user(Request $request)
+  {
+    $validatedData  =  $request->validate([
+      'name'  => 'required|max:255',
+      'email' => 'required|max:255',
+      'password' => 'required|max:255'
+    ]);
+
+    $user = new User;
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->password = Hash::make($request->password);
+    $user->role = $request->role;
+    $user->save();
+
+    return redirect('/admin/users')->with('success', 'User successfully added');
   }
 
   public function edit($id)
@@ -74,6 +93,12 @@ class AdminController extends Controller
     $colors = Color::all();
     $categories = Category::all();
     return view('admin-page/update-product-form', compact('colors', 'categories', 'selected_product'));
+  }
+
+  public function edit_user($id)
+  {
+    $selected_user = User::find($id);
+    return view('admin-page/update-user-form', compact('selected_user'));
   }
 
   public function update(Request $request, $id)
@@ -90,6 +115,18 @@ class AdminController extends Controller
     return redirect('/admin/products')->with('success', 'Product successfully updated');
   }
 
+  public function update_user(Request $request, $id)
+  {
+    $validatedData  =  $request->validate([
+      'name'  => 'required|max:255',
+      'email' => 'required|max:255'
+    ]);
+
+    $selected_user = User::find($id);
+    $selected_user->update($request->all());
+    return redirect('/admin/users')->with('success', 'User successfully updated');
+  }
+
   public function delete($id)
   {
     $selected_product = Product::find($id);
@@ -102,6 +139,13 @@ class AdminController extends Controller
     $selected_product_photo = Photos::find($id);
     $selected_product_photo->delete($selected_product_photo);
     return redirect('/admin/products-photo')->with('success', 'Product\'s photo successfully deleted');
+  }
+
+  public function delete_user($id)
+  {
+    $selected_user = User::find($id);
+    $selected_user->delete($selected_user);
+    return redirect('/admin/users')->with('success', 'User successfully deleted');
   }
 
   public function view_products()
@@ -126,5 +170,16 @@ class AdminController extends Controller
   {
     $products = Product::all();
     return view('admin-page/insert-product-photo-form', compact('products'));
+  }
+
+  public function view_users()
+  {
+    $users = User::all();
+    return view('admin-page/view-users', compact('users'));
+  }
+
+  public function view_insert_user()
+  {
+    return view('admin-page/insert-user-form');
   }
 }

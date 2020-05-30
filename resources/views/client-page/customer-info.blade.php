@@ -9,7 +9,7 @@
                     <div class="checkout_details_area mt-50 clearfix">
 
                         <div class="cart-title">
-                            <h2>Custom Order Form</h2>
+                            <h2>User's Info</h2>
                         </div>
 
                         <form action="#" method="post">
@@ -24,16 +24,29 @@
                                     <input type="email" class="form-control" id="email" placeholder="Email">
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input type="number" class="form-control" id="phone" placeholder="Phone no" value="">
+                                    <select class="w-100" id="city">
+                                        <option value="Bali">Bali</option>
+                                        <option value="Surabaya">Surabaya</option>
+                                        <option value="East Jakarta">East Jakarta</option>
+                                        <option value="West Jakarta">West Jakarta</option>
+                                        <option value="North Jakarta">North Jakarta</option>
+                                        <option value="South Jakarta">South Jakarta</option>
+                                    </select>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <textarea name="description" class="form-control w-100" id="description" cols="30" rows="10" placeholder="Leave a comment about your custom order"></textarea>
+                                    <input type="text" class="form-control mb-3" id="address" placeholder="Address">
                                 </div>
-                                <div class="custom-file col-12 mb-3">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="file" name="file[]" accept="image/jpg, image/jpeg, image/png" multiple>
-                                        <label class="custom-file-label" for="file">Choose Photo (.jpg/.jpeg/.png)</label>
-                                    </div>
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" id="city" placeholder="Town" value="">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="zip_code" placeholder="Zip Code">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="number" class="form-control" id="phone" placeholder="Phone No">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <textarea name="address" class="form-control w-100" id="address" cols="15" rows="10" placeholder="Address"></textarea>
                                 </div>
                             </div>
                         </form>
@@ -41,7 +54,7 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="cart-summary">
-                        <a href="#" class="btn amado-btn w-100">Proceed Custom Order</a>
+                        <a href="#" class="btn amado-btn w-100">Update User's Info</a>
                     </div>
                 </div>
             </div>

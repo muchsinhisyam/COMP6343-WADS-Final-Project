@@ -32,11 +32,11 @@
             </div>
             <div class="form-group">
               <label for="price">Price</label>
-              <input id="price "type="text" class="form-control" name="price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Product's Price" required/>
+              <input id="price "type="number" class="form-control" name="price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Product's Price" required/>
             </div>
             <div class="form-group">
               <label for="qty">Stock</label>
-              <input id="qty"type="text" class="form-control" name="qty" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Product's Qty" required/>
+              <input id="qty"type="number" class="form-control" name="qty" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="Product's Qty" required/>
             </div>
             <div class="form-group">
               <label for="category">Category</label>
