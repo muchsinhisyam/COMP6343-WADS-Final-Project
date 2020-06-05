@@ -102,7 +102,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Sub-Components:</h6>
             <a class="collapse-item" href="#">Stock Orders</a>
-            <a class="collapse-item" href="#">Custom Orders</a>
+            <a class="collapse-item" href="/admin/view-custom-orders">Custom Orders</a>
           </div>
         </div>
       </li>

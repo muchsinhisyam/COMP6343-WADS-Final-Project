@@ -165,11 +165,13 @@
                                     </a>
                                 </div>
                                 <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="cart">
-                                        <a href="{{ url('/cart', $product->id) }}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
+                                @if ($product->qty > 0)
+                                    <div class="ratings-cart text-right">
+                                        <div class="cart">
+                                            <a href="{{ url('/cart', $product->id) }}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{{ asset('/assets/client-page/img/core-img/cart.png')}}" alt=""></a>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

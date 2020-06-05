@@ -36,7 +36,7 @@
               <label for="category">Category</label>
               <select class="form-control" id="category_id" name="category_id" required>
                 @foreach($categories as $category)
-                  <option value="{{$category->id}}"  @if($category->id==$selected_category) selected @endif>{{$category->category_name}}</option>
+                  <option value="{{$category->id}}"  @if($category->id==$selected_product->category_id) selected @endif>{{$category->category_name}}</option>
                 @endforeach
               </select>
             </div>
@@ -44,7 +44,7 @@
               <label for="color">Color</label>
               <select class="form-control" id="color_id" name="color_id" required>
                 @foreach($colors as $color)
-                  <option value="{{$color->id}}"  @if($color->id==$selected_color) selected @endif>{{$color->color_name}}</option>
+                  <option value="{{$color->id}}"  @if($color->id==$selected_product->color_id) selected @endif>{{$color->color_name}}</option>
                 @endforeach
               </select>
             </div>

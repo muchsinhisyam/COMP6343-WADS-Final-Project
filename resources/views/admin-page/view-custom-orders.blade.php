@@ -29,27 +29,32 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Product Name</th>
-                <th>Image</th>
+                <th>Customer Name</th>
+                <th>Description</th>
+                <th>Order Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
                 <th>ID</th>
-                <th>Product Name</th>
-                <th>Image</th>
+                <th>Customer Name</th>
+                <th>Description</th>
+                <th>Order Status</th>
                 <th>Action</th>
               </tr>
             </tfoot>
             <tbody>
-              @foreach($photos as $photo)
+              @foreach($custom_orders_info as $info)
                 <tr>
-                  <td>{{ $photo->id }}</td>
-                  <td>{{ $photo->product->product_name }}</td>
-                  <td><img class="images" id="image" height="300" width="500" src="{{ asset('images/'.$photo->image_name ) }}" /></td>
+                  <td> {{ $info->id }} </td>
+                  <td> {{ $info->user->name }} </td>
+                  <td> {{ $info->description }} </td>
+                  <td> {{ $info->order_status }} </td>
                   <td>
-                    <a href="/admin/products-photo/{{$photo->id}}/delete" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="/admin/view-custom-orders/{{ $info->id }}/edit" class="btn btn-success btn-sm">Update Status</a>
+                    <a href="/admin/view-custom-orders/{{ $info->id }}/download" class="btn btn-warning btn-sm">Download</a>
+                    <a href="/admin/view-custom-orders/{{ $info->id }}/delete" class="btn btn-danger btn-sm">Delete</a>
                   </td> 
                 </tr>
               @endforeach
