@@ -71,7 +71,7 @@
                     @guest
                     @else
                     <li class="active">
-                        <a href="/customer-info">
+                        <a href="/customer-info/{{ Auth::user()->id }}">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                     </li>
@@ -128,7 +128,11 @@
                 <!-- Newsletter Form -->
                 <div class="col-10 col-lg-6 col-xl-5">
                     <div class="newsletter-form mb-100">
-                        <a class="btn amado-btn mb-15" href="/custom-order">Custom Order</a>
+                         @guest
+                            <a class="btn amado-btn mb-15" href="/login">Custom Order</a>
+                         @else
+                            <a class="btn amado-btn mb-15" href="/custom-order/{{ Auth::user()->id }}">Custom Order</a>
+                         @endguest
                     </div>
                 </div>
             </div>
@@ -168,7 +172,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         @guest
                                         @else
                                         <li class="nav-item">
-                                            <a class="nav-link"href="/customer-info">User's Info</a>
+                                            <a class="nav-link"href="/customer-info/{{ Auth::user()->id }}">User's Info</a>
                                         </li>
                                         @endguest
                                         <li class="nav-item">

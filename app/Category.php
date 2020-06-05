@@ -10,15 +10,9 @@ class Category extends Model
     protected $fillable = [
         'id', 'category_name',
     ];
-
-    // public function product()
-    // {
-    //     return $this->belongsTo('App\Product', 'category_id');
-    // }
-
     
-    public function categories()
+    public function product()
     {
-        return $this->hasOne('App\Category', 'category_id');
+        return $this->hasOne('App\Product');
     }
 }

@@ -7,8 +7,10 @@ use App\Photos;
 use App\Product;
 use App\Color;
 use App\User;
+use App\CustomOrders;
 use Illuminate\Http\Request;
 use File;
+use ZipArchive;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -36,7 +38,7 @@ class AdminController extends Controller
     ]); 
 
     $input = $request->all();
-    // return $request->all();
+    
     $id = Product::create($input)->id;
     // if ($request->hasFile('file')) {
     foreach ($request->file as $file) {
@@ -92,15 +94,19 @@ class AdminController extends Controller
     $selected_product = Product::find($id);
     $colors = Color::all();
     $categories = Category::all();
-    $selected_color = Color::first()->id;
-    $selected_category = Category::first()->id;
-    return view('admin-page/update-product-form', compact('colors', 'categories', 'selected_product', 'selected_color', 'selected_category'));
+    return view('admin-page/update-product-form', compact('colors', 'categories', 'selected_product'));
   }
 
   public function edit_user($id)
   {
     $selected_user = User::find($id);
     return view('admin-page/update-user-form', compact('selected_user'));
+  }
+
+  public function edit_custom_orders_info($id)
+  {
+    $info = CustomOrders::find($id);
+    return view('admin-page/update-custom-order-form', compact('info'));
   }
 
   public function update(Request $request, $id)
@@ -129,6 +135,42 @@ class AdminController extends Controller
     return redirect('/admin/users')->with('success', 'User successfully updated');
   }
 
+  public function update_custom_orders_info(Request $request, $id)
+  {
+    CustomOrders::where('id', $id)->update(
+      array(
+        'order_status' => $request->order_status
+    ));
+    return redirect('/admin/view-custom-orders')->with('success', 'Order status  successfully updated');
+  }
+
+  public function download_images($id) 
+  { 
+    $custom_orders = CustomOrders::find($id);
+    $custom_photos = $custom_orders->custom_photo;
+
+    $files = [];
+    foreach ($custom_photos as $custom_photo) {
+        $files[$custom_photo->id] = public_path('custom_images').'/'.$custom_photo->image_name;
+    }
+    
+    $folderName = $custom_orders->id.'-'.'Custom-Photos'.'.zip';
+    $zip = new ZipArchive;
+    // $zipFile    = public_path().'/'.$folderName.'.zip';
+
+    if ($zip->open(public_path('downloads').'/'.$folderName, ZipArchive::CREATE) === TRUE)
+    {
+        foreach ($files as $key => $value) {
+            $relativeNameInZipFile = basename($value);
+            $zip->addFile($value, $relativeNameInZipFile);
+        }
+
+        $zip->close();
+    }
+
+    return response()->download(public_path('downloads').'/'.$folderName);
+  }
+
   public function delete($id)
   {
     $selected_product = Product::find($id);
@@ -150,6 +192,13 @@ class AdminController extends Controller
     return redirect('/admin/users')->with('success', 'User successfully deleted');
   }
 
+  public function delete_custom_orders_info($id)
+  {
+    $selected_user = CustomOrders::find($id);
+    $selected_user->delete($selected_user);
+    return redirect('/admin/view-custom-orders')->with('success', 'Order successfully deleted');
+  }
+
   public function view_products()
   {
     $products = Product::all();
@@ -165,8 +214,6 @@ class AdminController extends Controller
   {
     $colors = Color::all();
     $categories = Category::all();
-    // $selectedColor = Color::first()->id;
-    // $selectedCategory = Category::first()->id;
     return view('admin-page/insert-product-form', compact('colors', 'categories'));
   }
 
@@ -183,6 +230,17 @@ class AdminController extends Controller
   }
 
   public function view_insert_user()
+  {
+    return view('admin-page/insert-user-form');
+  }
+
+  public function view_custom_orders_info() 
+  {
+    $custom_orders_info = CustomOrders::with('user')->get();
+    return view('admin-page/view-custom-orders', compact('custom_orders_info'));
+  }
+
+  public function view_custom()
   {
     return view('admin-page/insert-user-form');
   }
