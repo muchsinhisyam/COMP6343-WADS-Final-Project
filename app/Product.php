@@ -15,28 +15,18 @@ class Product extends Model
         'product_name', 'color_id', 'category_id', 'price', 'qty', 'description',
     ];
 
-    public function images()
+    public function photos()
     {
         return $this->hasMany('App\Photos');
     }
 
-    // public function categories()
-    // {
-    //     return $this->hasOne('App\Category', 'id');
-    // }
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
 
-    // public function colors()
-    // {
-    //     return $this->hasOne('App\Color', 'id');
-    // }
-
-    // public function categories()
-    // {
-    //     return $this->belongsTo('App\Category', 'id');
-    // }
-
-    // public function colors()
-    // {
-    //     return $this->belongsTo('App\Color', 'id');
-    // }
+    public function color()
+    {
+        return $this->belongsTo('App\Color');
+    }
 }

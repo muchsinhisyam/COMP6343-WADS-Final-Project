@@ -128,7 +128,7 @@
                 <!-- Newsletter Form -->
                 <div class="col-10 col-lg-6 col-xl-5">
                     <div class="newsletter-form mb-100">
-                        <a class="btn amado-btn mb-15" href="/custom-order">Custom Order</a>
+                    <a class="btn amado-btn mb-15" href="/custom-order/">Custom Order</a>
                     </div>
                 </div>
             </div>

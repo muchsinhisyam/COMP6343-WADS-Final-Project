@@ -33,7 +33,7 @@ class AdminController extends Controller
       'qty' => 'required|digits_between:0,2147483646|numeric',
       'description' => 'required|max:255'
       // Photo Size need to be limited
-    ]); 
+    ]);
 
     $input = $request->all();
     // return $request->all();
@@ -49,7 +49,7 @@ class AdminController extends Controller
       $photo->save();
     }
     // }
-    return redirect('/admin/insert-product-form')->with('success', 'Product successfully added');
+    return redirect('/admin/products')->with('success', 'Product successfully added');
   }
 
   public function insert_product_photo(Request $request)
@@ -66,7 +66,7 @@ class AdminController extends Controller
       $photo->save();
     }
     // }
-    return redirect('/admin/insert-product-photo-form')->with('success', 'Product\'s Photo successfully added');
+    return redirect('/admin/products-photo')->with('success', 'Product\'s Photo successfully added');
   }
 
   public function insert_user(Request $request)

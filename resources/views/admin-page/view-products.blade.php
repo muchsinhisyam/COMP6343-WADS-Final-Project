@@ -54,16 +54,16 @@
             <tbody>
               @foreach($products as $product)
                 <tr>
-                  <td>{{$product->id}}</td>
-                  <td>{{$product->product_name}}</td>
-                  <td>{{$product->price}}</td>
-                  <td>{{$product->qty}}</td>
-                  <td>{{$product->category_id}}</td>
-                  <td>{{$product->color_id}}</td>
-                  <td>{{$product->description}}</td>
+                  <td>{{ $product->id }}</td>
+                  <td>{{ $product->product_name }}</td>
+                  <td>{{ $product->price }}</td>
+                  <td>{{ $product->qty }}</td>
+                  <td>{{ $product->category->category_name }}</td>
+                  <td>{{ $product->color->color_name }}</td>
+                  <td>{{ $product->description }}</td>
                   <td>
-                    <a href="/admin/products/{{$product->id}}/update-product-form" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="/admin/products/{{$product->id}}/delete" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="/admin/products/{{ $product->id }}/update-product-form" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/admin/products/{{ $product->id }}/delete" class="btn btn-danger btn-sm">Delete</a>
                   </td> 
                 </tr>
               @endforeach

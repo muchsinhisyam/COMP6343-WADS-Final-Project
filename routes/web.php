@@ -18,7 +18,9 @@ Route::get('/', 'HomeController@index')
     ->name('home.main');
 Route::get('/products', 'HomeController@view_products')
     ->name('home.products');
-Route::get('/product-details', 'HomeController@view_product_details')
+Route::get('products/category/{id}', 'HomeController@view_products_by_category')
+    ->name('home.category');
+Route::get('/product-details/{id}', 'HomeController@view_product_details')
     ->name('home.product-details');
 Route::get('/cart', 'HomeController@view_cart')
     ->name('home.cart')
