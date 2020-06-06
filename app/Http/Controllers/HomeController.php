@@ -51,11 +51,6 @@ class HomeController extends Controller
         return view('client-page/product-details', compact('selected_product', 'category'));
     }
 
-    public function view_cart()
-    {
-        return view('client-page/cart');
-    }
-
     public function view_custom_order_form()
     {
         return view('client-page/custom-order-form');

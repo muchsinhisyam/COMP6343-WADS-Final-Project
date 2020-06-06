@@ -2,6 +2,22 @@
 @section('title', 'Cart')
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success" role="alert">
+            {{session('success')}}
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
     <div class="cart-table-area section-padding-100">
         <div class="container-fluid">
             <div class="row">
@@ -21,69 +37,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="cart_product_img">
-                                        <a href="#"><img src="{{ asset('/assets/client-page/img/bg-img/cart1.jpg')}}" alt="Product"></a>
-                                    </td>
-                                    <td class="cart_product_desc">
-                                        <h5>White Modern Chair</h5>
-                                    </td>
-                                    <td class="price">
-                                        <span>$130</span>
-                                    </td>
-                                    <td class="qty">
-                                        <div class="qty-btn d-flex">
-                                            <p>Qty</p>
-                                            <div class="quantity">
-                                                <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                                <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                @forelse ($carts as $cart)
+                                    <tr>
+                                        <td class="cart_product_img">
+                                            <a href="{{ url('/product-details', $cart->product->id) }}"><img src="{{ asset('images/'.$cart->product->photo->image_name) }}" alt="Product"></a>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                            <h5>{{ $cart->product->name }}</h5>
+                                        </td>
+                                        <td class="price">
+                                            <span>IDR {{ $cart->product->price }}</span>
+                                        </td>
+                                        <td class="qty">
+                                            <div class="qty-btn d-flex">
+                                                <p>Qty</p>
+                                                <div class="quantity">
+                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="{{ $cart->qty }}">
+                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <td>
+                                        <p style="text-align: center">No data available in Cart</p>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="cart_product_img">
-                                        <a href="#"><img src="{{ asset('/assets/client-page/img/bg-img/cart2.jpg')}}" alt="Product"></a>
-                                    </td>
-                                    <td class="cart_product_desc">
-                                        <h5>Minimal Plant Pot</h5>
-                                    </td>
-                                    <td class="price">
-                                        <span>$10</span>
-                                    </td>
-                                    <td class="qty">
-                                        <div class="qty-btn d-flex">
-                                            <p>Qty</p>
-                                            <div class="quantity">
-                                                <span class="qty-minus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                <input type="number" class="qty-text" id="qty2" step="1" min="1" max="300" name="quantity" value="1">
-                                                <span class="qty-plus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="cart_product_img">
-                                        <a href="#"><img src="{{ asset('/assets/client-page/img/bg-img/cart3.jpg')}}" alt="Product"></a>
-                                    </td>
-                                    <td class="cart_product_desc">
-                                        <h5>Minimal Plant Pot</h5>
-                                    </td>
-                                    <td class="price">
-                                        <span>$10</span>
-                                    </td>
-                                    <td class="qty">
-                                        <div class="qty-btn d-flex">
-                                            <p>Qty</p>
-                                            <div class="quantity">
-                                                <span class="qty-minus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                <input type="number" class="qty-text" id="qty3" step="1" min="1" max="300" name="quantity" value="1">
-                                                <span class="qty-plus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

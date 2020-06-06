@@ -13,33 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Added Client-Page Routing
-Route::get('/custom-order/{id}', 'CustomOrderController@view_values')
-    ->middleware('auth');;
-Route::post('/custom-order', 'CustomOrderController@update_and_create')
-    ->middleware('auth');;
-Route::get('/customer-info/{id}', 'CustomerInfoController@view_values')
-    ->middleware('auth');;
-Route::post('/customer-info', 'CustomerInfoController@update_and_create')
-    ->middleware('auth');;
-
-// Added Admin-Page Routing
-Route::get('/admin/view-custom-orders', 'AdminController@view_custom_orders_info')
-    ->name('admin-page.view-custom-orders')
-    ->middleware('is_admin');
-Route::get('/admin/view-custom-orders/{id}/edit', 'AdminController@edit_custom_orders_info')
-    ->name('admin-page.view-custom-orders')
-    ->middleware('is_admin');
-Route::get('/admin/view-custom-orders/{id}/delete', 'AdminController@delete_custom_orders_info')
-    ->name('admin-page.delete-custom-orders')
-    ->middleware('is_admin');
-Route::get('/admin/view-custom-orders/{id}/download', 'AdminController@download_images')
-    ->name('admin-page.download-images')
-    ->middleware('is_admin');
-Route::post('/admin/view-custom-orders/{id}/update', 'AdminController@update_custom_orders_info')
-    ->name('admin-page.update-custom-orders')
-    ->middleware('is_admin');
-
 // Client-Page Routing
 Route::get('/', 'HomeController@index')
     ->name('home.main');
@@ -49,7 +22,10 @@ Route::get('products/category/{id}', 'HomeController@view_products_by_category')
     ->name('home.category');
 Route::get('/product-details/{id}', 'HomeController@view_product_details')
     ->name('home.product-details');
-Route::get('/cart', 'HomeController@view_cart')
+Route::get('/cart', 'CartController@view_cart')
+    ->name('home.cart')
+    ->middleware('auth');
+Route::get('/cart/{id}', 'CartController@insertProductToCart')
     ->name('home.cart')
     ->middleware('auth');
 Route::get('/custom-order', 'HomeController@view_custom_order_form')
@@ -68,6 +44,15 @@ Route::get('/login', 'Auth/LoginController@showLoginForm')
     ->name('auth.login');
 Route::get('/register', 'Auth/RegisterController@showRegistrationForm')
     ->name('auth.register');
+
+Route::get('/custom-order/{id}', 'CustomOrderController@view_values')
+    ->middleware('auth');
+Route::post('/custom-order', 'CustomOrderController@update_and_create')
+    ->middleware('auth');
+Route::get('/customer-info/{id}', 'CustomerInfoController@view_values')
+    ->middleware('auth');
+Route::post('/customer-info', 'CustomerInfoController@update_and_create')
+    ->middleware('auth');
 
 // Admin-Page Routing
 Route::get('/admin', 'AdminController@index')
@@ -121,6 +106,22 @@ Route::get('/admin/products/{id}/delete', 'AdminController@delete')
     ->middleware('is_admin');
 Route::get('/admin/products-photo/{id}/delete', 'AdminController@delete_product_photo')
     ->name('admin-page.delete-product-photo')
+    ->middleware('is_admin');
+
+Route::get('/admin/view-custom-orders', 'AdminController@view_custom_orders_info')
+    ->name('admin-page.view-custom-orders')
+    ->middleware('is_admin');
+Route::get('/admin/view-custom-orders/{id}/edit', 'AdminController@edit_custom_orders_info')
+    ->name('admin-page.view-custom-orders')
+    ->middleware('is_admin');
+Route::get('/admin/view-custom-orders/{id}/delete', 'AdminController@delete_custom_orders_info')
+    ->name('admin-page.delete-custom-orders')
+    ->middleware('is_admin');
+Route::get('/admin/view-custom-orders/{id}/download', 'AdminController@download_images')
+    ->name('admin-page.download-images')
+    ->middleware('is_admin');
+Route::post('/admin/view-custom-orders/{id}/update', 'AdminController@update_custom_orders_info')
+    ->name('admin-page.update-custom-orders')
     ->middleware('is_admin');
 
 // Auth Routing
