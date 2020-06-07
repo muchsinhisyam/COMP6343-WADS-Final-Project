@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CartDetail;
 use App\Category;
 use App\CustomerInfo;
+use App\Order;
 use App\Photos;
 use App\Product;
 use Illuminate\Support\Facades\DB;
@@ -61,18 +63,19 @@ class HomeController extends Controller
         return view('client-page/checkout');
     }
 
-    public function view_orders()
+    public function view_orders($id)
     {
-        return view('client-page/orders');
+        $orders = Order::where('user_id', '=', $id)->get();
+        return view('client-page/orders', compact('orders'));
     }
 
-    public function  view_user_info()
+    public function view_user_info()
     {
         // $selected_user = CustomerInfo::find($id);
         return view('client-page/customer-info');
     }
 
-    public function  view_products_by_category($id)
+    public function view_products_by_category($id)
     {
         $category_products = Product::where('category_id', '=', $id)->orderBy('created_at', 'DESC')->get();
         return view('client-page/products-category', compact('category_products'));

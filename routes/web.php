@@ -28,13 +28,16 @@ Route::get('/cart', 'CartController@view_cart')
 Route::get('/cart/{id}', 'CartController@insertProductToCart')
     ->name('home.cart')
     ->middleware('auth');
+Route::get('/cart/{id}/delete', 'CartController@delete_cart_details')
+    ->name('home.delete-cart')
+    ->middleware('auth');
 Route::get('/custom-order', 'HomeController@view_custom_order_form')
     ->name('home.custom-order')
     ->middleware('auth');
 Route::get('/checkout', 'HomeController@view_checkout')
     ->name('home.checkout')
     ->middleware('auth');
-Route::get('/orders', 'HomeController@view_orders')
+Route::get('/orders/{id}', 'HomeController@view_orders')
     ->name('home.orders')
     ->middleware('auth');
 Route::get('/customer-info', 'HomeController@view_user_info')

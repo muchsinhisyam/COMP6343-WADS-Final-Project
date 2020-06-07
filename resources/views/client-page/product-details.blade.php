@@ -82,9 +82,20 @@
                             @else
                                 <p><i class="fa fa-circle" style="color:red"></i> Out of Stock</p>
                             @endif
+                            <hr>
                         </div>
-
+                        <h5 class="widget-title mb-30">Color</h5>
+                        <div class="widget color mb-50">
+                            <!-- Widget Title -->
+                            <div class="widget-desc">
+                                <ul class="d-flex">
+                                    <li><a class="color" style="background-color: {{ Illuminate\Support\Str::lower($selected_product->color->color_name) }}"></a></li>
+                                </ul>
+                            </div>
+                            <hr>
+                        </div>
                         <div class="short_overview my-5">
+                            <h5 class="widget-title mb-30">Product's Description</h5>
                             <p>{{ $selected_product->description }}</p>
                         </div>
                         

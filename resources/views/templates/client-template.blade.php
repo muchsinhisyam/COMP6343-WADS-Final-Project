@@ -78,7 +78,11 @@
                     @endguest
                     <li class="active"><a href="/">Home</a></li>
                     <li><a href="/products">Products</a></li>
-                    <li><a href="/orders">Orders</a></li>
+                    @guest
+                        <li><a href="/login">Orders</a></li>
+                    @else
+                        <li><a href="/orders/{{ Auth::user()->id}}">Orders</a></li>
+                    @endguest
                     <li><a href="/cart">Cart</a></li>
                 </ul>
             </nav>
@@ -169,21 +173,30 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item active">
                                             <a class="nav-link" href="/">Home</a>
                                         </li>
-                                        @guest
-                                        @else
-                                        <li class="nav-item">
-                                            <a class="nav-link"href="/customer-info/{{ Auth::user()->id }}">User's Info</a>
-                                        </li>
-                                        @endguest
                                         <li class="nav-item">
                                             <a class="nav-link" href="/products">Products</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/custom-order">Custom Order</a>
-                                        </li>
+                                        @guest
+                                            <li class="nav-item">
+                                                <a class="nav-link"href="/login">Custom Order</a>
+                                            </li>
+                                        @else
+                                            <li class="nav-item">
+                                                <a class="nav-link"href="/custom-order/{{ Auth::user()->id }}">Custom Order</a>
+                                            </li>
+                                        @endguest
                                         <li class="nav-item">
                                             <a class="nav-link" href="/cart">Cart</a>
                                         </li>
+                                        @guest
+                                            <li class="nav-item">
+                                                <a class="nav-link"href="/login">Orders</a>
+                                            </li>
+                                        @else
+                                            <li class="nav-item">
+                                                <a class="nav-link"href="/orders/{{ Auth::user()->id }}">Orders</a>
+                                            </li>
+                                        @endguest
                                     </ul>
                                 </div>
                             </nav>

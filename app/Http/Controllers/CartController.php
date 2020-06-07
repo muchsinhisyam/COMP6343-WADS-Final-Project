@@ -13,11 +13,12 @@ class CartController extends Controller
     public function view_cart()
     {
         $loggedIn_userId = Auth::user()->id;
-        $selected_cart = Cart::select('id')->where('user_id', '=', $loggedIn_userId)->first();
-        $carts = CartDetail::with('product.photos')->get();
-        $selected_carts = $carts->where('cart_id', '=', $selected_cart->id);
-        // return $selected_carts;
-        return view('client-page/cart', compact('selected_carts'));
+        $cart = Cart::select('id')->where('user_id', '=', $loggedIn_userId)->first();
+        $cartDetail = CartDetail::with('product.photos')->where('cart_id', '=', $cart->id)->orderBy('created_at', 'DESC')->get();
+        if (!isset($cart)) {
+            return view('client-page/cart');
+        }
+        return view('client-page/cart', compact('cartDetail'));
     }
 
     public function insertProductToCart(Request $request, $id)
@@ -27,15 +28,6 @@ class CartController extends Controller
         // Selecting 'id' on carts
         $cart = Cart::select('id')->where('user_id', '=', $loggedIn_userId)->first();
         // $cartDetail = CartDetail::where('cart_id', '=', $cart->id)->get();
-
-        // If User's Cart is not exist, then Cart is created
-        if (!isset($cart)) {
-            $newCart = new Cart;
-            $newCart->user_id = $loggedIn_userId;
-            $newCart->save();
-
-            $cart = $newCart;
-        }
 
         // If User make Cart from /products page (instant Cart), then the qty set to 1
         if ($request->quantity == null) {
@@ -81,5 +73,12 @@ class CartController extends Controller
             }
         }
         return false;
+    }
+
+    public function  delete_cart_details($id)
+    {
+        $selected_item = CartDetail::find($id);
+        $selected_item->delete($selected_item);
+        return redirect('/cart')->with('success', 'Product successfully deleted');
     }
 }

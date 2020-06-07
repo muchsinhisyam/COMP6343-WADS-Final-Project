@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\CustomerInfo;
+use App\Cart;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -66,7 +67,7 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {   
+    {
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -77,6 +78,10 @@ class RegisterController extends Controller
         CustomerInfo::create([
             'user_id' => $user->id,
             'email' => $data['email']
+        ]);
+
+        Cart::create([
+            'user_id' => $user->id
         ]);
 
         return $user;
