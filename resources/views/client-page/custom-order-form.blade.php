@@ -44,11 +44,11 @@
                                     <input type="phone" class="form-control" id="phone" name="phone" placeholder="Phone no" value="{{ $customer_info->phone }}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <textarea name="description" class="form-control w-100" id="description" cols="30" rows="10" placeholder="Leave a comment about your custom order"></textarea>
+                                    <textarea name="description" class="form-control w-100" id="description" cols="30" rows="10" placeholder="Leave a comment about your custom order" required></textarea>
                                 </div>
                                 <div class="custom-file col-12 mb-3">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="file" name="file[]" accept="image/jpg, image/jpeg, image/png" multiple>
+                                        <input type="file" class="custom-file-input" id="file" name="file[]" accept="image/jpg, image/jpeg, image/png" multiple required>
                                         <label class="custom-file-label" for="file">Choose Photo (.jpg/.jpeg/.png)</label>
                                     </div>
                                 </div>

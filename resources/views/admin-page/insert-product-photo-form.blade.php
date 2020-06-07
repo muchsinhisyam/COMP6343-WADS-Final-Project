@@ -38,7 +38,7 @@
               <label for="description">Photo</label>
               <div class="input-group mb-3">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="file" name="file[]" accept="image/jpg, image/jpeg, image/png" multiple>
+                  <input type="file" class="custom-file-input" id="file" name="file[]" accept="image/jpg, image/jpeg, image/png" multiple required>
                   <label class="custom-file-label" for="file">Choose Photo (.jpg/.jpeg/.png)</label>
                 </div>
               </div>

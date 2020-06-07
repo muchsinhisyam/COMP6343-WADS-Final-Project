@@ -44,7 +44,7 @@ class HomeController extends Controller
         return view('client-page/products', compact('products', 'countProducts'));
     }
 
-    public function view_product_details($id)
+    public function view_product_details(Request $request, $id)
     {
         $selected_product = Product::find($id);
         $category = $selected_product->category;

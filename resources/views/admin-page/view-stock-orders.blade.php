@@ -1,5 +1,5 @@
 @extends('templates/admin-template')
-@section('title', 'View Custom Orders')
+@section('title', 'View Stock Orders')
 
 @section('content')
     @if(session('success'))
@@ -18,7 +18,7 @@
       </div>
     @endif
 
-    <h1 class="h3 mb-2 text-gray-800">View Custom Orders</P></h1>
+    <h1 class="h3 mb-2 text-gray-800">View Stock Orders</P></h1>
     <div class="card shadow mb-4">
       {{-- <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
@@ -30,7 +30,6 @@
               <tr>
                 <th>ID</th>
                 <th>Customer Name</th>
-                <th>Description</th>
                 <th>Order Status</th>
                 <th>Action</th>
               </tr>
@@ -39,22 +38,19 @@
               <tr>
                 <th>ID</th>
                 <th>Customer Name</th>
-                <th>Description</th>
                 <th>Order Status</th>
                 <th>Action</th>
               </tr>
             </tfoot>
             <tbody>
-              @foreach($custom_orders as $custom_order)
+              @foreach($stock_orders as $stock_order)
                 <tr>
-                  <td> {{ $custom_order->id }} </td>
-                  <td> {{ $custom_order->user->name }} </td>
-                  <td> {{ $custom_order->description }} </td>
-                  <td> {{ $custom_order->order_status }} </td>
+                  <td> {{ $stock_order->id }} </td>
+                  <td> {{ $stock_order->user->name }} </td>
+                  <td> {{ $stock_order->order_status }} </td>
                   <td>
-                    <a href="/admin/view-custom-orders/{{ $custom_order->id }}/edit" class="btn btn-success btn-sm">Update Status</a>
-                    <a href="/admin/view-custom-orders/{{ $custom_order->id }}/download" class="btn btn-warning btn-sm">Download</a>
-                    <a href="/admin/view-custom-orders/{{ $custom_order->id }}/delete" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="/admin/view-stock-orders/{{ $stock_order->id }}/edit" class="btn btn-success btn-sm">Update Status</a>
+                    <a href="/admin/view-stock-orders/{{ $stock_order->id }}/delete" class="btn btn-danger btn-sm">Delete</a>
                   </td> 
                 </tr>
               @endforeach

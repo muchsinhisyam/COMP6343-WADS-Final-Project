@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomOrdersPhotosTable extends Migration
+class CreateCustomOrderPhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCustomOrdersPhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('custom_orders_photos', function (Blueprint $table) {
+        Schema::create('custom_order_photos', function (Blueprint $table) {
             $table->id()->unsigned();
-            $table->bigInteger('custom_orders_id')->unsigned();
-            $table->foreign('custom_orders_id')->references('id')->on('custom_orders')->onDelete('cascade');
+            $table->bigInteger('order_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->string('image_name');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateCustomOrdersPhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('custom_orders_photos');
+        Schema::dropIfExists('custom_order_photos');
     }
 }

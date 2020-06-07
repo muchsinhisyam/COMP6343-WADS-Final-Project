@@ -90,7 +90,7 @@
                         
                         @if ($selected_product->qty > 0)
                             <!-- Add to Cart Form -->
-                            <form href="{{ url('/cart', $selected_product->id) }}" class="cart clearfix" method="get">
+                            <form action="{{ url('/cart', $selected_product->id) }}" class="cart clearfix" method="get">
                                 <div class="cart-btn d-flex mb-50">
                                     <p>Qty</p>
                                     <div class="quantity">
@@ -99,7 +99,7 @@
                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
                                     </div>
                                 </div>
-                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
+                                <button type="submit" class="btn amado-btn">Add to cart</button>
                             </form>
                         @endif
                     </div>

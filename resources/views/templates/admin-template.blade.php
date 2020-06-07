@@ -89,6 +89,7 @@
             <h6 class="collapse-header">Sub-Components:</h6>
             <a class="collapse-item" href="/admin/insert-user-form">Create User</a>
             <a class="collapse-item" href="/admin/users">View Users</a>
+            <a class="collapse-item" href="/admin/users-info">View Users Info</a>
           </div>
         </div>
       </li>
@@ -101,8 +102,9 @@
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Sub-Components:</h6>
-            <a class="collapse-item" href="#">Stock Orders</a>
-            <a class="collapse-item" href="/admin/view-custom-orders">Custom Orders</a>
+            <a class="collapse-item" href="/admin/view-stock-orders">View Stock Orders</a>
+            <a class="collapse-item" href="/admin/view-stock-order-details">View Stock Order Details</a>
+            <a class="collapse-item" href="/admin/view-custom-orders">View Custom Orders</a>
           </div>
         </div>
       </li>

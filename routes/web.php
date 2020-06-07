@@ -67,6 +67,9 @@ Route::get('/admin/products-photo', 'PhotoController@index')
 Route::get('/admin/users', 'AdminController@view_users')
     ->name('admin-page.view-users')
     ->middleware('is_admin');
+Route::get('/admin/users-info', 'AdminController@view_users_info')
+    ->name('admin-page.view-users-info')
+    ->middleware('is_admin');
 Route::get('/admin/insert-user-form', 'AdminController@view_insert_user')
     ->name('admin-page.insert-user-form')
     ->middleware('is_admin');
@@ -108,20 +111,40 @@ Route::get('/admin/products-photo/{id}/delete', 'AdminController@delete_product_
     ->name('admin-page.delete-product-photo')
     ->middleware('is_admin');
 
-Route::get('/admin/view-custom-orders', 'AdminController@view_custom_orders_info')
+Route::get('/admin/view-custom-orders', 'AdminController@view_custom_orders')
     ->name('admin-page.view-custom-orders')
     ->middleware('is_admin');
-Route::get('/admin/view-custom-orders/{id}/edit', 'AdminController@edit_custom_orders_info')
-    ->name('admin-page.view-custom-orders')
-    ->middleware('is_admin');
-Route::get('/admin/view-custom-orders/{id}/delete', 'AdminController@delete_custom_orders_info')
+Route::get('/admin/view-custom-orders/{id}/delete', 'AdminController@delete_custom_orders')
     ->name('admin-page.delete-custom-orders')
     ->middleware('is_admin');
 Route::get('/admin/view-custom-orders/{id}/download', 'AdminController@download_images')
     ->name('admin-page.download-images')
     ->middleware('is_admin');
-Route::post('/admin/view-custom-orders/{id}/update', 'AdminController@update_custom_orders_info')
+Route::post('/admin/view-custom-orders/{id}/update', 'AdminController@update_custom_orders')
     ->name('admin-page.update-custom-orders')
+    ->middleware('is_admin');
+Route::get('/admin/view-custom-orders/{id}/edit', 'AdminController@edit_custom_order')
+    ->name('admin-page.edit-custom-orders')
+    ->middleware('is_admin');
+
+Route::get('/admin/view-stock-orders', 'AdminController@view_stock_orders')
+    ->name('admin-page.view-stock-orders')
+    ->middleware('is_admin');
+Route::get('/admin/view-stock-orders/{id}/delete', 'AdminController@delete_stock_orders')
+    ->name('admin-page.delete-stock-orders')
+    ->middleware('is_admin');
+Route::post('/admin/view-stock-orders/{id}/update', 'AdminController@update_stock_orders')
+    ->name('admin-page.update-stock-orders')
+    ->middleware('is_admin');
+Route::get('/admin/view-stock-orders/{id}/edit', 'AdminController@edit_stock_order')
+    ->name('admin-page.edit-stock-orders')
+    ->middleware('is_admin');
+
+Route::get('/admin/view-stock-order-details', 'AdminController@view_stock_order_details')
+    ->name('admin-page.view-stock-order-details')
+    ->middleware('is_admin');
+Route::get('/admin/view-stock-order-details/{id}/delete', 'AdminController@delete_stock_order_details')
+    ->name('admin-page.delete-stock-order-details')
     ->middleware('is_admin');
 
 // Auth Routing

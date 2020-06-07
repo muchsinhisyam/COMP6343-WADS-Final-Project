@@ -5,11 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class CustomPhotos extends Model
-{   
-    protected $table = 'custom_orders_photos';
+{
+    protected $table = 'custom_order_photos';
 
     protected $fillable = [
-        'custom_orders_id', 'image_name',
+        'order_id', 'image_name',
     ];
 
     public function custom_order()

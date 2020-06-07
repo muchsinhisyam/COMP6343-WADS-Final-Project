@@ -47,8 +47,8 @@ class User extends Authenticatable
         return $this->hasOne('App\CustomerInfo');
     }
 
-    public function custom_orders()
+    public function order()
     {
-        return $this->hasMany('App\CustomOrders');
+        return $this->hasMany('App\Order');
     }
 }

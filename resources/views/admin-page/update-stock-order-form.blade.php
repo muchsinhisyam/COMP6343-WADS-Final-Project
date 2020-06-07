@@ -24,7 +24,7 @@
       @endif
       
       <div class="card-body">
-        <form action="/admin/view-custom-orders/{{$selected_order->id}}/update" method="POST" enctype="multipart/form-data">
+        <form action="/admin/view-stock-orders/{{$selected_order->id}}/update" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Update Status</label>

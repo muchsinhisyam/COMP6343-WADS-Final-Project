@@ -29,4 +29,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\Color');
     }
+
+    public function orderdetail()
+    {
+        return $this->hasMany('App\OrderDetail');
+    }
 }
