@@ -37,13 +37,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($carts as $cart)
+                                @forelse ($selected_carts as $cart)
                                     <tr>
-                                        <td class="cart_product_img">
-                                            <a href="{{ url('/product-details', $cart->product->id) }}"><img src="{{ asset('images/'.$cart->product->photo->image_name) }}" alt="Product"></a>
-                                        </td>
+                                        @foreach ($cart->product->photos as $photo)
+                                            <td class="cart_product_img">
+                                                <a href="{{ url('/product-details', $cart->product_id) }}"><img src="{{ asset('images/'.$photo->image_name) }}" alt="Product"></a>
+                                            </td>
+                                        @endforeach
                                         <td class="cart_product_desc">
-                                            <h5>{{ $cart->product->name }}</h5>
+                                            <h5>{{ $cart->product->product_name }}</h5>
                                         </td>
                                         <td class="price">
                                             <span>IDR {{ $cart->product->price }}</span>

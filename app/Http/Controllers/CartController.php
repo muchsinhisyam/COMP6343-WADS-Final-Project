@@ -14,8 +14,10 @@ class CartController extends Controller
     {
         $loggedIn_userId = Auth::user()->id;
         $selected_cart = Cart::select('id')->where('user_id', '=', $loggedIn_userId)->first();
-        $carts = CartDetail::where('cart_id', '=', $selected_cart->id)->get();
-        return view('client-page/cart', compact('carts'));
+        $carts = CartDetail::with('product.photos')->get();
+        $selected_carts = $carts->where('cart_id', '=', $selected_cart->id);
+        // return $selected_carts;
+        return view('client-page/cart', compact('selected_carts'));
     }
 
     public function insertProductToCart(Request $request, $id)
