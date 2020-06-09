@@ -10,6 +10,12 @@
                         <h2>Orders</h2>
                     </div>
 
+                    @if(session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{session('success')}}
+                        </div>
+                    @endif
+
                     <div class="cart-table clearfix">
                         <table class="table table-responsive">
                             <thead>
@@ -28,7 +34,10 @@
                                         <td>{{ $order->order_status }}</td>
                                         <td>
                                             <a href="" class="btn btn-primary btn-sm">View Details</a>
-                                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                            @if ($order->order_status == 'Waiting for Payment')
+                                                <a href="" class="btn btn-info btn-sm">Pay</a>
+                                            @endif
+                                            <a href="/orders/{{ $order->id }}/delete" class="btn btn-danger btn-sm">Delete</a>
                                         </td>
                                     </tr>
                                 @empty

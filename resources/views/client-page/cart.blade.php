@@ -57,7 +57,7 @@
                                                     <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="{{ $cart->qty }}">
                                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                 </div>
-                                                <a href="'/cart/{{$cart->id }}/delete"><i class="fa fa-trash" style="font-size:35px;color:grey;"></i></a>
+                                                <a href="/cart/{{$cart->id }}/delete"><i class="fa fa-trash" style="font-size:35px;color:grey;"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -70,19 +70,21 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4">
-                    <div class="cart-summary">
-                        <h5>Cart Total</h5>
-                        <ul class="summary-table">
-                            <li><span>subtotal:</span> <span>IDR</span></li>
-                            <li><span>delivery:</span> <span>Free</span></li>
-                            <li><span>total:</span> <span>IDR</span></li>
-                        </ul>
-                        <div class="cart-btn mt-100">
-                            <a href="/checkout" class="btn amado-btn w-100">Checkout</a>
+                @if (!$cartDetail->isEmpty())
+                    <div class="col-12 col-lg-4">
+                        <div class="cart-summary">
+                            <h5>Cart Total</h5>
+                            <ul class="summary-table">
+                                <li><span>subtotal:</span> <span>IDR</span></li>
+                                <li><span>delivery:</span> <span>Free</span></li>
+                                <li><span>total:</span> <span>IDR</span></li>
+                            </ul>
+                            <div class="cart-btn mt-100">
+                                <a href="/checkout/{{ Auth::user()->id }}" class="btn amado-btn w-100">Checkout</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>

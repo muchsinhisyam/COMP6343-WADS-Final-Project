@@ -40,12 +40,10 @@ class CustomerInfoController extends Controller
         return redirect::back()->with('success', 'Account successfully updated');
     }
 
-    public function view_values()
+    public function view_customer_info($id)
     {
-        $user_id = Auth::user()->id;
-        $user = User::find($user_id);
+        $user = User::find($id);
         $customer_info = $user->customer;
-
         return view('client-page/customer-info', compact('customer_info'));
     }
 }

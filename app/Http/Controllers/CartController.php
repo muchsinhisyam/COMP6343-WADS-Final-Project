@@ -15,9 +15,6 @@ class CartController extends Controller
         $loggedIn_userId = Auth::user()->id;
         $cart = Cart::select('id')->where('user_id', '=', $loggedIn_userId)->first();
         $cartDetail = CartDetail::with('product.photos')->where('cart_id', '=', $cart->id)->orderBy('created_at', 'DESC')->get();
-        if (!isset($cart)) {
-            return view('client-page/cart');
-        }
         return view('client-page/cart', compact('cartDetail'));
     }
 

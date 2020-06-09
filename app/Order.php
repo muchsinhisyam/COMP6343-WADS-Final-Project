@@ -10,7 +10,8 @@ class Order extends Model
         'user_id', 'order_type', 'order_status', 'description',
     ];
 
-    const defaultStatus = 'Waiting for Approval';
+    const defaultCustomOrderStatus = 'Waiting for Approval';
+    const defaultStockOrderStatus = 'Waiting for Payment';
 
     public function customer_info()
     {

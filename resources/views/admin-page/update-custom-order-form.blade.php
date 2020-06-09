@@ -30,6 +30,7 @@
                 <label for="exampleFormControlSelect1">Update Status</label>
                     <select class="form-control" name="order_status" id="exampleFormControlSelect1">
                         <option @if($selected_order->order_status=="Waiting for Approval") selected @endif>Waiting for Approval</option>
+                        <option @if($selected_order->order_status=="Waiting for Payment") selected @endif>Waiting for Payment</option>
                         <option @if($selected_order->order_status=="Order on Process") selected @endif>Order on Process</option>
                         <option @if($selected_order->order_status=="On Delivery") selected @endif>On Delivery</option>
                         <option @if($selected_order->order_status=="Order Done") selected @endif>Order Done</option>

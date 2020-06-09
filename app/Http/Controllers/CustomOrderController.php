@@ -12,10 +12,11 @@ use Illuminate\Http\Request;
 
 class CustomOrderController extends Controller
 {
+  private $order_type = "Custom Order";
+
   public function update_and_create(Request $request)
   {
     $user_id = Auth::user()->id;
-    $order_type = "Custom Order";
 
     $validatedData  =  $request->validate([
       'first_name' => 'required|max:255',
@@ -37,8 +38,8 @@ class CustomOrderController extends Controller
 
     $order_info = Order::create([
       'user_id' => $user_id,
-      'order_type' => $order_type,
-      'order_status' => Order::defaultStatus,
+      'order_type' => $this->order_type,
+      'order_status' => Order::defaultCustomOrderStatus,
       'description' => $request->description
     ]);
 
@@ -54,15 +55,13 @@ class CustomOrderController extends Controller
       $custom_photo->save();
     }
 
-    return redirect::back()->with('success', 'Order successfully created');
+    return redirect('/orders/' . $user_id)->with('success', 'Your order is successfully added');
   }
 
-  public function view_values()
+  public function view_customer_info($id)
   {
-    $user_id = Auth::user()->id;
-    $user = User::find($user_id);
+    $user = User::find($id);
     $customer_info = $user->customer;
-
     return view('client-page/custom-order-form', compact('customer_info'));
   }
 }

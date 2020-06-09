@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 // Client-Page Routing
 Route::get('/', 'HomeController@index')
     ->name('home.main');
-Route::get('/products', 'HomeController@view_products')
+Route::get('/products', 'ProductController@view_products')
     ->name('home.products');
-Route::get('products/category/{id}', 'HomeController@view_products_by_category')
+Route::get('products/category/{id}', 'ProductController@view_products_by_category')
     ->name('home.category');
-Route::get('/product-details/{id}', 'HomeController@view_product_details')
+Route::get('/product-details/{id}', 'ProductController@view_product_details')
     ->name('home.product-details');
 Route::get('/cart', 'CartController@view_cart')
     ->name('home.cart')
@@ -31,29 +31,29 @@ Route::get('/cart/{id}', 'CartController@insertProductToCart')
 Route::get('/cart/{id}/delete', 'CartController@delete_cart_details')
     ->name('home.delete-cart')
     ->middleware('auth');
-Route::get('/custom-order', 'HomeController@view_custom_order_form')
-    ->name('home.custom-order')
-    ->middleware('auth');
-Route::get('/checkout', 'HomeController@view_checkout')
+Route::get('/checkout/{id}', 'OrderController@view_checkout')
     ->name('home.checkout')
-    ->middleware('auth');
-Route::get('/orders/{id}', 'HomeController@view_orders')
+    ->middleware('auth', 'cart_not_empty');
+Route::post('/checkout', 'OrderController@createTransaction')
+    ->name('home.checkout')
+    ->middleware('auth', 'cart_not_empty');
+Route::get('/orders/{id}', 'OrderController@view_orders')
     ->name('home.orders')
-    ->middleware('auth');
-Route::get('/customer-info', 'HomeController@view_user_info')
-    ->name('home.customer-info')
+    ->middleware('auth', 'is_logged_user');
+Route::get('/orders/{id}/delete', 'OrderController@delete_order')
+    ->name('home.orders')
     ->middleware('auth');
 Route::get('/login', 'Auth/LoginController@showLoginForm')
     ->name('auth.login');
 Route::get('/register', 'Auth/RegisterController@showRegistrationForm')
     ->name('auth.register');
 
-Route::get('/custom-order/{id}', 'CustomOrderController@view_values')
-    ->middleware('auth');
+Route::get('/custom-order/{id}', 'CustomOrderController@view_customer_info')
+    ->middleware('auth', 'is_logged_user');
 Route::post('/custom-order', 'CustomOrderController@update_and_create')
     ->middleware('auth');
-Route::get('/customer-info/{id}', 'CustomerInfoController@view_values')
-    ->middleware('auth');
+Route::get('/customer-info/{id}', 'CustomerInfoController@view_customer_info')
+    ->middleware('auth', 'is_logged_user');
 Route::post('/customer-info', 'CustomerInfoController@update_and_create')
     ->middleware('auth');
 
@@ -64,7 +64,7 @@ Route::get('/admin', 'AdminController@index')
 Route::get('/admin/products', 'AdminController@view_products')
     ->name('admin-page.view-products')
     ->middleware('is_admin');
-Route::get('/admin/products-photo', 'PhotoController@index')
+Route::get('/admin/products-photo', 'ProductController@view_product_photos')
     ->name('admin-page.view-products-photo')
     ->middleware('is_admin');
 Route::get('/admin/users', 'AdminController@view_users')

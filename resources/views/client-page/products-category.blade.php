@@ -112,10 +112,7 @@
                     <!-- Pagination -->
                     <nav aria-label="navigation">
                         <ul class="pagination justify-content-end mt-50">
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            {{  $category_products->links() }}
                         </ul>
                     </nav>
                 </div>
