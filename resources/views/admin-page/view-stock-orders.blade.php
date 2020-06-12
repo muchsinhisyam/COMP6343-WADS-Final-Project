@@ -50,6 +50,9 @@
                   <td> {{ $stock_order->order_status }} </td>
                   <td>
                     <a href="/admin/view-stock-orders/{{ $stock_order->id }}/edit" class="btn btn-success btn-sm">Update Status</a>
+                    @if ($stock_order->order_status != 'Waiting for Payment')
+                      <a href="/admin/view-stock-orders/{{ $stock_order->id }}/download-payment" class="btn btn-primary btn-sm">Download Payment Photo</a>
+                    @endif
                     <a href="/admin/view-stock-orders/{{ $stock_order->id }}/delete" class="btn btn-danger btn-sm">Delete</a>
                   </td> 
                 </tr>

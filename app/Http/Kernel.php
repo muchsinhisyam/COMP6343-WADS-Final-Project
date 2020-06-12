@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
         'is_logged_user' => \App\Http\Middleware\IsLoggedUser::class,
         'cart_not_empty' => \App\Http\Middleware\CartNotNull::class,
+        'is_ordered_by_logged_user' => \App\Http\Middleware\IsOrderedByLoggedUser::class,
     ];
 }

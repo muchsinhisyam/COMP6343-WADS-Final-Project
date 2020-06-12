@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CustomPhotos extends Model
+class TransferPhoto extends Model
 {
-    protected $table = 'custom_order_photos';
+    protected $table = 'transfer_photos';
 
     protected $fillable = [
         'order_id', 'image_name',

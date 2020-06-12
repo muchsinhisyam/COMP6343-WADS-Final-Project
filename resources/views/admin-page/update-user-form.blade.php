@@ -1,5 +1,5 @@
 @extends('templates/admin-template')
-@section('title', 'Create Product')
+@section('title', 'Update User')
 
 @section('content')
     <h1 class="h3 mb-2 text-gray-800">Update User</h1>

@@ -28,6 +28,11 @@ class Order extends Model
         return $this->HasMany('App\CustomPhotos', 'order_id');
     }
 
+    public function transfer_photo()
+    {
+        return $this->HasMany('App\TransferPhoto', 'order_id');
+    }
+
     public function orderdetails()
     {
         return $this->HasMany('App\OrderDetail');

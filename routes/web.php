@@ -56,6 +56,14 @@ Route::get('/customer-info/{id}', 'CustomerInfoController@view_customer_info')
     ->middleware('auth', 'is_logged_user');
 Route::post('/customer-info', 'CustomerInfoController@update_and_create')
     ->middleware('auth');
+Route::get('/detail-order/{id}', 'OrderController@view_order_details')
+    ->middleware('auth', 'is_ordered_by_logged_user');
+Route::get('/detail-custom-order/{id}', 'CustomOrderController@view_custom_order_details')
+    ->middleware('auth', 'is_ordered_by_logged_user');
+Route::get('/pay/{id}', 'OrderController@view_pay')
+    ->middleware('auth', 'is_ordered_by_logged_user');
+Route::post('/pay{id}', 'OrderController@insertTransactionPhotos')
+    ->middleware('auth', 'is_ordered_by_logged_user');
 
 // Admin-Page Routing
 Route::get('/admin', 'AdminController@index')
@@ -113,22 +121,34 @@ Route::get('/admin/products/{id}/delete', 'AdminController@delete')
 Route::get('/admin/products-photo/{id}/delete', 'AdminController@delete_product_photo')
     ->name('admin-page.delete-product-photo')
     ->middleware('is_admin');
+Route::post('/admin/users-info/{id}/update', 'AdminController@update_users_info')
+    ->name('admin-page.update-users-info')
+    ->middleware('is_admin');
+Route::get('/admin/users-info/{id}/update-form', 'AdminController@edit_users_info')
+    ->name('admin-page.view-update-users-info')
+    ->middleware('is_admin');
+Route::get('/admin/users-info/{id}/delete', 'AdminController@delete_users_info')
+    ->name('admin-page.update-users-info')
+    ->middleware('is_admin');
 
-Route::get('/admin/view-custom-orders', 'AdminController@view_custom_orders')
+Route::get('/admin/view-custom-orders', 'CustomOrderController@view_custom_orders')
     ->name('admin-page.view-custom-orders')
     ->middleware('is_admin');
-Route::get('/admin/view-custom-orders/{id}/delete', 'AdminController@delete_custom_orders')
+Route::get('/admin/view-custom-orders/{id}/delete', 'CustomOrderController@delete_custom_orders')
     ->name('admin-page.delete-custom-orders')
     ->middleware('is_admin');
-Route::get('/admin/view-custom-orders/{id}/download', 'AdminController@download_images')
+Route::get('/admin/view-custom-orders/{id}/download', 'CustomOrderController@download_custom_images')
     ->name('admin-page.download-images')
     ->middleware('is_admin');
-Route::post('/admin/view-custom-orders/{id}/update', 'AdminController@update_custom_orders')
+Route::get('/admin/view-custom-orders/{id}/download-payment', 'CustomOrderController@download_payment_images')
+    ->middleware('is_admin');
+Route::post('/admin/view-custom-orders/{id}/update', 'CustomOrderController@update_custom_orders')
     ->name('admin-page.update-custom-orders')
     ->middleware('is_admin');
-Route::get('/admin/view-custom-orders/{id}/edit', 'AdminController@edit_custom_order')
+Route::get('/admin/view-custom-orders/{id}/edit', 'CustomOrderController@edit_custom_order')
     ->name('admin-page.edit-custom-orders')
     ->middleware('is_admin');
+
 
 Route::get('/admin/view-stock-orders', 'AdminController@view_stock_orders')
     ->name('admin-page.view-stock-orders')
@@ -141,6 +161,8 @@ Route::post('/admin/view-stock-orders/{id}/update', 'AdminController@update_stoc
     ->middleware('is_admin');
 Route::get('/admin/view-stock-orders/{id}/edit', 'AdminController@edit_stock_order')
     ->name('admin-page.edit-stock-orders')
+    ->middleware('is_admin');
+Route::get('/admin/view-stock-orders/{id}/download-payment', 'OrderController@download_payment_images')
     ->middleware('is_admin');
 
 Route::get('/admin/view-stock-order-details', 'AdminController@view_stock_order_details')

@@ -12,7 +12,7 @@ class CustomerInfo extends Model
         'user_id', 'first_name', 'last_name', 'email', 'phone', 'city', 'zip_code', 'address',
     ];
 
-    public function product()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }

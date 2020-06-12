@@ -1,5 +1,5 @@
 @extends('templates/admin-template')
-@section('title', 'View Users')
+@section('title', 'View User Infos')
 
 @section('content')
     @if(session('success'))
@@ -20,7 +20,6 @@
 
     <h1 class="h3 mb-2 text-gray-800">View Users</P></h1>
     <div class="card shadow mb-4">
-      <a href="/admin/insert-user-form" class="btn btn-primary">Create New User</a>
       {{-- <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
       </div> --}}
@@ -29,38 +28,44 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Email</th>
-                <th>Role</th>
-                <th>Email Verified at</th>
-                <th>Password</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Zip Code</th>
+                <th>Address</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Email</th>
-                <th>Role</th>
-                <th>Email Verified at</th>
-                <th>Password</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Zip Code</th>
+                <th>Address</th>
                 <th>Action</th>
               </tr>
             </tfoot>
             <tbody>
-              @foreach($users as $user)
+              @foreach($users_info as $user_info)
                 <tr>
-                  <td>{{ $user->id }}</td>
-                  <td>{{ $user->name }}</td>
-                  <td>{{ $user->email }}</td>
-                  <td>{{ $user->role }}</td>
-                  <td>{{ $user->email_verified_at }}</td>
-                  <td>{{ $user->password }}</td>
+                  <td>{{ $user_info->user->id }}</td>
+                  <td>{{ $user_info->first_name }}</td>
+                  <td>{{ $user_info->last_name }}</td>
+                  <td>{{ $user_info->email }}</td>
+                  <td>{{ $user_info->phone }}</td>
+                  <td>{{ $user_info->city }}</td>
+                  <td>{{ $user_info->zip_code }}</td>
+                  <td>{{ $user_info->address }}</td>
                   <td>
-                    <a href="/admin/users/{{$user->id}}/update-user-form" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="/admin/users/{{$user->id}}/delete" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="/admin/users-info/{{$user_info->id}}/update-form" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/admin/users-info/{{$user_info->id}}/delete" class="btn btn-danger btn-sm">Delete</a>
                   </td> 
                 </tr>
               @endforeach

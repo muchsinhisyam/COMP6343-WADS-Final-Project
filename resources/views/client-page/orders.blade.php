@@ -1,5 +1,5 @@
 @extends('templates/client-template')
-@section('title', 'Cart')
+@section('title', 'Orders')
 
 @section('content')
     <div class="cart-table-area section-padding-100">
@@ -33,11 +33,24 @@
                                         <td>{{ $order->order_type }}</td>
                                         <td>{{ $order->order_status }}</td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-sm">View Details</a>
-                                            @if ($order->order_status == 'Waiting for Payment')
-                                                <a href="" class="btn btn-info btn-sm">Pay</a>
+                                            @if ($order->order_type == 'Stock Order')
+                                                <a href="/detail-order/{{ $order->id }}" class="btn btn-primary btn-sm">View Details</a>
                                             @endif
-                                            <a href="/orders/{{ $order->id }}/delete" class="btn btn-danger btn-sm">Delete</a>
+                                            @if ($order->order_type == 'Custom Order')
+                                                <a href="/detail-custom-order/{{ $order->id }}" class="btn btn-primary btn-sm">View Details</a>
+                                            @endif
+                                            @if ($order->order_status == 'Waiting for Payment')
+                                                <a href="/pay/{{ $order->id }}" class="btn btn-info btn-sm">Pay</a>
+                                            @endif
+                                            @if ($order->order_type == 'Custom Order' && $order->order_status != 'Waiting for Approval' && $order->order_status != 'Waiting for Payment')
+                                                <a href="#" class="btn btn-info btn-sm">Invoice</a>
+                                            @endif
+                                            @if ($order->order_type == 'Stock Order' && $order->order_status != 'Waiting for Approval' && $order->order_status != 'Waiting for Payment')
+                                                <a href="#" class="btn btn-info btn-sm">Invoice</a>
+                                            @endif
+                                            @if ($order->order_status == 'Waiting for Payment' || $order->order_status == 'Waiting for Approval')
+                                                <a href="/orders/{{ $order->id }}/delete" class="btn btn-danger btn-sm">Cancel</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

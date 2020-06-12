@@ -106,16 +106,16 @@ class AdminController extends Controller
     return view('admin-page/update-user-form', compact('selected_user'));
   }
 
-  public function edit_custom_order($id)
-  {
-    $selected_order = Order::find($id);
-    return view('admin-page/update-custom-order-form', compact('selected_order'));
-  }
-
   public function edit_stock_order($id)
   {
     $selected_order = Order::find($id);
     return view('admin-page/update-stock-order-form', compact('selected_order'));
+  }
+
+  public function edit_users_info($id)
+  {
+    $selected_users_info = CustomerInfo::find($id);
+    return view('admin-page/update-user-info-form', compact('selected_users_info'));
   }
 
   public function update(Request $request, $id)
@@ -144,14 +144,20 @@ class AdminController extends Controller
     return redirect('/admin/users')->with('success', 'User successfully updated');
   }
 
-  public function update_custom_orders(Request $request, $id)
+  public function update_users_info(Request $request, $id)
   {
-    Order::where('id', $id)->update(
-      array(
-        'order_status' => $request->order_status
-      )
-    );
-    return redirect('/admin/view-custom-orders')->with('success', 'Order status  successfully updated');
+    $validatedData  =  $request->validate([
+      'first_name'  => 'required|max:255',
+      'last_name' => 'required|max:255',
+      'email'  => 'required|max:255',
+      'phone' => 'required|regex:/(08)[0-9]{8}/|max:14',
+      'zip_code' => 'required|max:5',
+      'address' => 'required|max:255'
+    ]);
+
+    $selected_users_info = CustomerInfo::find($id);
+    $selected_users_info->update($request->all());
+    return redirect('/admin/users-info')->with('success', 'User\'s Info successfully updated');
   }
 
   public function update_stock_orders(Request $request, $id)
@@ -162,32 +168,6 @@ class AdminController extends Controller
       )
     );
     return redirect('/admin/view-stock-orders')->with('success', 'Order status  successfully updated');
-  }
-
-  public function download_images($id)
-  {
-    $custom_orders = Order::find($id);
-    $custom_photos = $custom_orders->custom_photo;
-
-    $files = [];
-    foreach ($custom_photos as $custom_photo) {
-      $files[$custom_photo->id] = public_path('custom_images') . '/' . $custom_photo->image_name;
-    }
-
-    $folderName = $custom_orders->id . '-' . 'Custom-Photos' . '.zip';
-    $zip = new ZipArchive;
-    // $zipFile    = public_path().'/'.$folderName.'.zip';
-
-    if ($zip->open(public_path('downloads') . '/' . $folderName, ZipArchive::CREATE) === TRUE) {
-      foreach ($files as $key => $value) {
-        $relativeNameInZipFile = basename($value);
-        $zip->addFile($value, $relativeNameInZipFile);
-      }
-
-      $zip->close();
-    }
-
-    return response()->download(public_path('downloads') . '/' . $folderName);
   }
 
   public function delete($id)
@@ -211,13 +191,6 @@ class AdminController extends Controller
     return redirect('/admin/users')->with('success', 'User successfully deleted');
   }
 
-  public function delete_custom_orders($id)
-  {
-    $selected_order = Order::find($id);
-    $selected_order->delete($selected_order);
-    return redirect('/admin/view-custom-orders')->with('success', 'Order successfully deleted');
-  }
-
   public function delete_stock_orders($id)
   {
     $selected_order = Order::find($id);
@@ -230,6 +203,13 @@ class AdminController extends Controller
     $selected_order_detail = OrderDetail::find($id);
     $selected_order_detail->delete($selected_order_detail);
     return redirect('/admin/view-stock-order-details')->with('success', 'Order successfully deleted');
+  }
+
+  public function delete_users_info($id)
+  {
+    $selected_users_info = CustomerInfo::find($id);
+    $selected_users_info->delete($selected_users_info);
+    return redirect('/admin/users-info')->with('success', 'User\'s Info successfully deleted');
   }
 
   public function view_products()
@@ -265,18 +245,12 @@ class AdminController extends Controller
   public function view_users_info()
   {
     $users_info = CustomerInfo::all();
-    return view('admin-page/view-users', compact('users_info'));
+    return view('admin-page/view-user-info', compact('users_info'));
   }
 
   public function view_insert_user()
   {
     return view('admin-page/insert-user-form');
-  }
-
-  public function view_custom_orders()
-  {
-    $custom_orders = Order::where('order_type', '=', 'Custom Order')->with('user')->get();
-    return view('admin-page/view-custom-orders', compact('custom_orders'));
   }
 
   public function view_stock_orders()
@@ -289,10 +263,5 @@ class AdminController extends Controller
   {
     $stock_order_details = OrderDetail::with('product')->get();
     return view('admin-page/view-stock-order-details', compact('stock_order_details'));
-  }
-
-  public function view_custom()
-  {
-    return view('admin-page/insert-user-form');
   }
 }
