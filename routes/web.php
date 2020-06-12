@@ -28,6 +28,9 @@ Route::get('/cart', 'CartController@view_cart')
 Route::get('/cart/{id}', 'CartController@insertProductToCart')
     ->name('home.cart')
     ->middleware('auth');
+Route::post('/cart/{id}/update', 'CartController@update_cart_details')
+    ->name('home.update-cart')
+    ->middleware('auth');
 Route::get('/cart/{id}/delete', 'CartController@delete_cart_details')
     ->name('home.delete-cart')
     ->middleware('auth');

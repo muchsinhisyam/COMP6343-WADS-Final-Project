@@ -15,7 +15,14 @@ class CartController extends Controller
         $loggedIn_userId = Auth::user()->id;
         $cart = Cart::select('id')->where('user_id', '=', $loggedIn_userId)->first();
         $cartDetail = CartDetail::with('product.photos')->where('cart_id', '=', $cart->id)->orderBy('created_at', 'DESC')->get();
-        return view('client-page/cart', compact('cartDetail'));
+        $subTotal = 0;
+
+        foreach ($cartDetail as $detail) {
+            $selectedProductPrice = $detail->qty * $detail->product->price;
+            $subTotal = $selectedProductPrice + $subTotal;
+        }
+
+        return view('client-page/cart', compact('cartDetail', 'subTotal'));
     }
 
     public function insertProductToCart(Request $request, $id)
@@ -24,52 +31,78 @@ class CartController extends Controller
         $loggedIn_userId = Auth::user()->id;
         // Selecting 'id' on carts
         $cart = Cart::select('id')->where('user_id', '=', $loggedIn_userId)->first();
-        // $cartDetail = CartDetail::where('cart_id', '=', $cart->id)->get();
+        $cartDetail = CartDetail::where('cart_id', '=', $cart->id)->get();
 
-        // If User make Cart from /products page (instant Cart), then the qty set to 1
+        if ($addedProduct->qty == 0) {
+            return redirect('/cart')->with('success', 'Oops! The product is finished. Please order again next time.');
+        }
+
+        else if ($request->qty > $addedProduct->qty) {
+            $message = 'Oops! The stock is limited. There are '.$addedProduct->qty.' left.';
+            return redirect('/cart')->with('success', $message);
+        }
+
+        // If user created a cart from /products page (instant Cart), then the qty set to 1
         if ($request->quantity == null) {
             $selectedQty = 1;
         }
-        // If User make Cart from /products-details page , then the qty set to selected qty value
+        // If user created a cart from /products-details page , then the qty is set to the selected qty value
         else {
             $selectedQty = $request->quantity;
         }
 
-        // // If Selected product already exist
-        // if ($this->productExist($cartDetail, $addedProduct)) {
-        //     // UPDATE QTY = QTY value on Table + SelectedQty
-        //     CartDetail::where('product_id', $cartDetail->product_id)->update(
-        //         array(
-        //             'qty' => $cartDetail->qty + $selectedQty
-        //         )
-        //     );
-        // } else {
-        //     $newCartDetail = new CartDetail;
-        //     $newCartDetail->cart_id = $cart->id;
-        //     $newCartDetail->product_id = $addedProduct->id;
-        //     $newCartDetail->qty = $selectedQty;
-        //     $newCartDetail->save();
-        // }
+        $selectedProductInCartDetails = $cartDetail->where('product_id', '=', $id)->first();
 
-        $newCartDetail = new CartDetail;
-        $newCartDetail->cart_id = $cart->id;
-        $newCartDetail->product_id = $addedProduct->id;
-        $newCartDetail->qty = $selectedQty;
-        $newCartDetail->save();
+        // // If selected product already exist
+        if ($this->productExist($selectedProductInCartDetails, $addedProduct)) {
+            // UPDATE QTY = QTY value on Table + SelectedQty
+            CartDetail::where('product_id', $id)->update(
+                array(
+                    'qty' => $selectedProductInCartDetails->qty + $selectedQty
+                )
+            );
+        } else {
+            $newCartDetail = new CartDetail;
+            $newCartDetail->cart_id = $cart->id;
+            $newCartDetail->product_id = $addedProduct->id;
+            $newCartDetail->qty = $selectedQty;
+            $newCartDetail->save();
+        }
 
         return redirect('/cart')->with('success', 'Product successfully added to Cart');
     }
 
-    public function productExist($cartDetail, $product)
-    {
-        foreach ($cartDetail as $cartDetails) {
-            if ($cartDetails->product_id == $product->id) {
-                return true;
-            } else {
-                continue;
-            }
+    public function productExist($selectedProduct, $product)
+    {   
+        if($selectedProduct == null){
+            return false;
         }
-        return false;
+
+        else{
+            return true;
+        }
+    }
+
+    public function update_cart_details(Request $request, $id)
+    {   
+        $loggedIn_userId = Auth::user()->id;
+        // Selecting 'id' on carts
+        $cart = Cart::select('id')->where('user_id', '=', $loggedIn_userId)->first();
+        $cartDetails = CartDetail::where('cart_id', '=', $cart->id)->get();
+
+        $selectedQuantititesOfChosenProducts = $request->all();
+
+        $count = count($selectedQuantititesOfChosenProducts['quantity']);
+
+        foreach($cartDetails as $cartDetail) {
+            $count--;
+            CartDetail::where('id', $cartDetail->id)->update(
+                array(
+                    'qty' => $selectedQuantititesOfChosenProducts['quantity'][$count]
+                )
+            );
+        }
+        return redirect('/cart')->with('success', 'Cart successfully updated');
     }
 
     public function  delete_cart_details($id)

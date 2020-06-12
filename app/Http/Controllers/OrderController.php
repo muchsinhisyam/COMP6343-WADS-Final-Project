@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\OrderDetail;
 use App\User;
+use App\Product;
 use App\CustomerInfo;
 use App\Cart;
 use App\CartDetail;
@@ -77,6 +78,11 @@ class OrderController extends Controller
             $order_detail->order_id = $newOrder->id;
             $order_detail->product_id = $cartDetail->product_id;
             $order_detail->qty = $cartDetail->qty;
+            $product = Product::where('id', $cartDetail->product_id)->update(
+                array(
+                    'qty'=>$cartDetail->product->qty-$order_detail->qty
+                )
+            );
             $order_detail->save();
 
             $cartDetail->delete();
