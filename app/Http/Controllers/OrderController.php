@@ -80,7 +80,7 @@ class OrderController extends Controller
             $order_detail->qty = $cartDetail->qty;
             $product = Product::where('id', $cartDetail->product_id)->update(
                 array(
-                    'qty'=>$cartDetail->product->qty-$order_detail->qty
+                    'qty' => $cartDetail->product->qty - $order_detail->qty
                 )
             );
             $order_detail->save();
@@ -100,7 +100,15 @@ class OrderController extends Controller
     {
         $selected_order = Order::find($id);
         $selected_order_details = OrderDetail::where('order_id', '=', $selected_order->id)->get();
-        return view('client-page/order-details', compact('selected_order_details'));
+
+        $subTotal = 0;
+
+        foreach ($selected_order_details as $detail) {
+            $selectedProductPrice = $detail->qty * $detail->product->price;
+            $subTotal = $selectedProductPrice + $subTotal;
+        }
+
+        return view('client-page/order-details', compact('selected_order_details', 'subTotal'));
     }
 
     public function view_pay($id)

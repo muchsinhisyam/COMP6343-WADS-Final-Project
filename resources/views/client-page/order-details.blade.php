@@ -65,9 +65,9 @@
                     <div class="cart-summary">
                         <h5>Order Details</h5>
                         <ul class="summary-table">
-                            <li><span>subtotal:</span> <span>IDR</span></li>
+                            <li><span>subtotal:</span> <span>IDR {{ $subTotal }}</span></li>
                             <li><span>delivery:</span> <span>Free</span></li>
-                            <li><span>total:</span> <span>IDR</span></li>
+                            <li><span>total:</span> <span>IDR {{ $subTotal }}</span></li>
                         </ul>
                         <h5>Shipment Details</h5>
                         <ul class="summary-table">
