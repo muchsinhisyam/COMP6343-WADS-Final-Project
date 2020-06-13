@@ -43,10 +43,10 @@
                                                 <a href="/pay/{{ $order->id }}" class="btn btn-info btn-sm">Pay</a>
                                             @endif
                                             @if ($order->order_type == 'Custom Order' && $order->order_status != 'Waiting for Approval' && $order->order_status != 'Waiting for Payment')
-                                                <a href="#" class="btn btn-info btn-sm">Invoice</a>
+                                                <a href="/orders/{{ $order->id }}/custom_invoice" class="btn btn-info btn-sm">Invoice</a>
                                             @endif
                                             @if ($order->order_type == 'Stock Order' && $order->order_status != 'Waiting for Approval' && $order->order_status != 'Waiting for Payment')
-                                                <a href="#" class="btn btn-info btn-sm">Invoice</a>
+                                                <a href="/orders/{{ $order->id }}/invoice" class="btn btn-info btn-sm">Invoice</a>
                                             @endif
                                             @if ($order->order_status == 'Waiting for Payment' || $order->order_status == 'Waiting for Approval')
                                                 <a href="/orders/{{ $order->id }}/delete" class="btn btn-danger btn-sm">Cancel</a>

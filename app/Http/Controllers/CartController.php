@@ -74,11 +74,10 @@ class CartController extends Controller
 
     public function productExist($selectedProduct, $product)
     {   
-        if($selectedProduct == null){
+        if($selectedProduct == null) {
             return false;
         }
-
-        else{
+        else {
             return true;
         }
     }

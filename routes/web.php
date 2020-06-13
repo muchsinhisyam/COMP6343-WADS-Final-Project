@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Added route
+Route::get('/orders/{id}/invoice', 'OrderController@view_invoice');
+
 // Client-Page Routing
 Route::get('/', 'HomeController@index')
     ->name('home.main');

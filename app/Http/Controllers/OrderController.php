@@ -12,7 +12,12 @@ use App\CartDetail;
 use App\TransferPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Redirect;
 use ZipArchive;
+use LaravelDaily\Invoices\Invoice;
+use LaravelDaily\Invoices\Classes\Buyer;
+use LaravelDaily\Invoices\Classes\Party;
+use LaravelDaily\Invoices\Classes\InvoiceItem;
 
 class OrderController extends Controller
 {
@@ -25,10 +30,40 @@ class OrderController extends Controller
     }
 
     public function view_checkout($id)
-    {
+    {   
+        $cart = Cart::select('id')->where('user_id', '=', $id)->first();
+        $cartDetails = CartDetail::where('cart_id', '=', $cart->id)->get();
+
+        // if($this->checkIfProductChosenExceedsStock($cartDetails)) {
+        //     $user = User::find($id);
+        //     $customer_info = $user->customer;
+        //     return view('client-page/checkout', compact('customer_info'));
+        // } 
+        // else {
+        //     $message = 'Oops! The stock is limited.';
+        //     return Redirect::back()->with('success', 'Oops! The stock is limited.');;
+        // }
+
+        foreach($cartDetails as $cartDetail) {
+            $selectedProduct = Product::select('product_name', 'qty')->where('id', '=', $cartDetail->product_id)->first();
+            if($cartDetail->qty > $selectedProduct->qty){
+                $message = 'Oops! The stock is limited. There are '.$selectedProduct->qty.' '.$selectedProduct->product_name.' left.';
+                return Redirect::back()->with('success', $message);
+            }
+        }
         $user = User::find($id);
         $customer_info = $user->customer;
         return view('client-page/checkout', compact('customer_info'));
+    }
+
+    public function checkIfProductChosenExceedsStock($cartDetails) {
+        foreach($cartDetails as $cartDetail) {
+            $selectedProduct = Product::select('qty')->where('id', '=', $cartDetail->product_id)->first();
+            if($cartDetail->qty > $selectedProduct->qty){
+                return false;
+            }
+        }
+        return true;
     }
 
     public function createTransaction(Request $request)
@@ -117,6 +152,60 @@ class OrderController extends Controller
         return view('client-page/pay-form', compact('selected_order'));
     }
 
+    public function view_invoice($id) 
+    {   
+        $userId = Auth::user()->id;
+        $customerInfo = CustomerInfo::where('user_id', '=', $userId)->first();
+
+        // $order = Order::select('id')->where('user_id', '=', $id)->first();
+        $orderDate = Order::select('created_at')->where('id', '=', $id)->first();
+        $orderDetails = OrderDetail::where('order_id', '=', $id)->get();
+
+        $owner = new Party([
+            'custom_fields' => [
+                'Company Name'          => 'Customniture',
+                'phone'         => '(021) 786-5108',
+                'address' => 'Jalan Menteng Raya No. 5'
+            ],
+        ]);
+
+        $customer = new Party([
+            'custom_fields' =>[
+                'User ID' => $customerInfo->user_id,
+                'First Name' => $customerInfo->first_name,
+                'Last Name' =>  $customerInfo->last_name,
+                'Email Address'=> $customerInfo->email,
+                'Telp No' =>  $customerInfo->phone,
+                'City' => $customerInfo->city,
+                'Zip Code' => $customerInfo->zip_code,
+                'Address' => $customerInfo->address
+            ],
+        ]);
+
+        $items = [];
+
+        foreach($orderDetails as $orderDetail) {
+            $selectedProduct = Product::where('id', '=', $orderDetail->product_id)->first();
+            $item = (new InvoiceItem())->title($selectedProduct->product_name)->pricePerUnit($selectedProduct->price)->quantity($orderDetail->qty);
+            array_push($items, $item);
+        }
+
+        $item = (new InvoiceItem())->title('Service 1')->pricePerUnit(2);
+
+        $invoice = Invoice::make('receipt')
+            ->serialNumberFormat($id)
+            ->seller($owner)
+            ->buyer($customer)
+            ->date($orderDate->created_at)
+            ->dateFormat('d/m/Y')
+            ->currencySymbol('IDR')
+            ->filename($customerInfo->first_name . 'OrderNo.' . $id)
+            ->addItems($items)
+            ->logo(public_path('vendor/invoices/logo.png'));
+
+        return $invoice->stream();
+    }
+
     public function insertTransactionPhotos($id, Request $request)
     {
         $iteration = 1;
@@ -142,7 +231,7 @@ class OrderController extends Controller
     }
 
     public function download_payment_images($id)
-    {
+    {   
         $selected_stock_order = Order::find($id);
         $transfer_photos = $selected_stock_order->transfer_photo;
 
