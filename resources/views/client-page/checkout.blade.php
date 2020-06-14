@@ -60,9 +60,9 @@
                     <div class="cart-summary">
                         <h5>Cart Total</h5>
                         <ul class="summary-table">
-                            <li><span>subtotal:</span> <span>IDR</span></li>
+                            <li><span>subtotal:</span> <span>IDR {{ $subTotal }}</span></li>
                             <li><span>delivery:</span> <span>Free</span></li>
-                            <li><span>total:</span> <span>IDR</span></li>
+                            <li><span>total:</span> <span>IDR {{ $subTotal }}</span></li>
                             <li><span>payment method:</span> <span>Transfer</span></li>
                         </ul>
                         <div class="cart-btn mt-100">

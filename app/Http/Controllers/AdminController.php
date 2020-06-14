@@ -43,15 +43,19 @@ class AdminController extends Controller
     $input = $request->all();
 
     $id = Product::create($input)->id;
+    $iteration = 1;
     // if ($request->hasFile('file')) {
     foreach ($request->file as $file) {
-      $filename = $file->getClientOriginalName();
+      $extension = $file->getClientOriginalExtension();
+      $filename = 'ProductID-' . $id . '-Image-' . $iteration . '.' . $extension;
       $path = public_path() . '/images';
       $file->move($path, $filename);
       $photo = new \App\Photos;
       $photo->product_id = $id;
       $photo->image_name = $filename;
       $photo->save();
+
+      $iteration++;
     }
     // }
     return redirect('/admin/products')->with('success', 'Product successfully added');
@@ -60,8 +64,10 @@ class AdminController extends Controller
   public function insert_product_photo(Request $request)
   {
     // if ($request->hasFile('file')) {
+    $iteration = 1;
     foreach ($request->file as $file) {
-      $filename = $file->getClientOriginalName();
+      $extension = $file->getClientOriginalExtension();
+      $filename = 'ProductID-' . $request->id . '-Image-' . $iteration . '.' . $extension;
       // $file->storeAs('public/images', $filename);
       $path = public_path() . '/images';
       $file->move($path, $filename);
@@ -69,6 +75,8 @@ class AdminController extends Controller
       $photo->product_id = $request->product_name; // product_name value on <select> is product_id
       $photo->image_name = $filename;
       $photo->save();
+
+      $iteration++;
     }
     // }
     return redirect('/admin/products-photo')->with('success', 'Product\'s Photo successfully added');

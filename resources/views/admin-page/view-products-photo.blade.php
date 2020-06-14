@@ -29,7 +29,7 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>Product ID</th>
                 <th>Product Name</th>
                 <th>Image</th>
                 <th>Action</th>
@@ -37,7 +37,7 @@
             </thead>
             <tfoot>
               <tr>
-                <th>ID</th>
+                <th>Product ID</th>
                 <th>Product Name</th>
                 <th>Image</th>
                 <th>Action</th>
@@ -46,7 +46,7 @@
             <tbody>
               @foreach($photos as $photo)
                 <tr>
-                  <td>{{ $photo->id }}</td>
+                  <td>{{ $photo->product->id }}</td>
                   <td>{{ $photo->product->product_name }}</td>
                   <td><img class="images" id="image" height="300" width="500" src="{{ asset('images/'.$photo->image_name ) }}" /></td>
                   <td>

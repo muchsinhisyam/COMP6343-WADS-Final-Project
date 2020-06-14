@@ -30,7 +30,7 @@ class OrderController extends Controller
     }
 
     public function view_checkout($id)
-    {   
+    {
         $cart = Cart::select('id')->where('user_id', '=', $id)->first();
         $cartDetails = CartDetail::where('cart_id', '=', $cart->id)->get();
 
@@ -43,23 +43,31 @@ class OrderController extends Controller
         //     $message = 'Oops! The stock is limited.';
         //     return Redirect::back()->with('success', 'Oops! The stock is limited.');;
         // }
+        $subTotal = 0;
 
-        foreach($cartDetails as $cartDetail) {
+        foreach ($cartDetails as $detail) {
+            $selectedProductPrice = $detail->qty * $detail->product->price;
+            $subTotal = $selectedProductPrice + $subTotal;
+        }
+
+        foreach ($cartDetails as $cartDetail) {
             $selectedProduct = Product::select('product_name', 'qty')->where('id', '=', $cartDetail->product_id)->first();
-            if($cartDetail->qty > $selectedProduct->qty){
-                $message = 'Oops! The stock is limited. There are '.$selectedProduct->qty.' '.$selectedProduct->product_name.' left.';
-                return Redirect::back()->with('success', $message);
+            if ($cartDetail->qty > $selectedProduct->qty) {
+                $message = 'Oops! The stock is limited. There are ' . $selectedProduct->qty . ' ' . $selectedProduct->product_name . ' left.';
+                return Redirect::back()->with('error', $message);
             }
         }
+
         $user = User::find($id);
         $customer_info = $user->customer;
-        return view('client-page/checkout', compact('customer_info'));
+        return view('client-page/checkout', compact('customer_info', 'subTotal'));
     }
 
-    public function checkIfProductChosenExceedsStock($cartDetails) {
-        foreach($cartDetails as $cartDetail) {
+    public function checkIfProductChosenExceedsStock($cartDetails)
+    {
+        foreach ($cartDetails as $cartDetail) {
             $selectedProduct = Product::select('qty')->where('id', '=', $cartDetail->product_id)->first();
-            if($cartDetail->qty > $selectedProduct->qty){
+            if ($cartDetail->qty > $selectedProduct->qty) {
                 return false;
             }
         }
@@ -127,6 +135,17 @@ class OrderController extends Controller
     public function delete_order($id)
     {
         $selected_order = Order::find($id);
+        $orderDetails = OrderDetail::where('order_id', '=', $selected_order->id)->get();
+
+        if ($selected_order->order_status = 'Stock Order') {
+            foreach ($orderDetails as $orderDetail) {
+                $product = Product::where('id', '=', $orderDetail->product_id)->first();
+                $product->qty = $orderDetail->qty + $product->qty;
+
+                $product->update();
+            }
+        }
+
         $selected_order->delete($selected_order);
         return redirect('/orders/' . Auth::user()->id)->with('success', 'Order successfully deleted or canceled');
     }
@@ -152,8 +171,8 @@ class OrderController extends Controller
         return view('client-page/pay-form', compact('selected_order'));
     }
 
-    public function view_invoice($id) 
-    {   
+    public function view_invoice($id)
+    {
         $userId = Auth::user()->id;
         $customerInfo = CustomerInfo::where('user_id', '=', $userId)->first();
 
@@ -170,11 +189,11 @@ class OrderController extends Controller
         ]);
 
         $customer = new Party([
-            'custom_fields' =>[
+            'custom_fields' => [
                 'User ID' => $customerInfo->user_id,
                 'First Name' => $customerInfo->first_name,
                 'Last Name' =>  $customerInfo->last_name,
-                'Email Address'=> $customerInfo->email,
+                'Email Address' => $customerInfo->email,
                 'Telp No' =>  $customerInfo->phone,
                 'City' => $customerInfo->city,
                 'Zip Code' => $customerInfo->zip_code,
@@ -184,7 +203,7 @@ class OrderController extends Controller
 
         $items = [];
 
-        foreach($orderDetails as $orderDetail) {
+        foreach ($orderDetails as $orderDetail) {
             $selectedProduct = Product::where('id', '=', $orderDetail->product_id)->first();
             $item = (new InvoiceItem())->title($selectedProduct->product_name)->pricePerUnit($selectedProduct->price)->quantity($orderDetail->qty);
             array_push($items, $item);
@@ -210,7 +229,8 @@ class OrderController extends Controller
     {
         $iteration = 1;
         foreach ($request->file as $file) {
-            $filename = 'OrderID-' . $id . '-Payment-Photo-' . $iteration . '.jpg';
+            $extension = $file->getClientOriginalExtension();
+            $filename = 'OrderID-' . $id . '-Payment-Photo-' . $iteration . '.' . $extension;
             $path = public_path() . '/payment_photos';
             $file->move($path, $filename);
             $transfer_photo = new TransferPhoto;
@@ -231,7 +251,7 @@ class OrderController extends Controller
     }
 
     public function download_payment_images($id)
-    {   
+    {
         $selected_stock_order = Order::find($id);
         $transfer_photos = $selected_stock_order->transfer_photo;
 
