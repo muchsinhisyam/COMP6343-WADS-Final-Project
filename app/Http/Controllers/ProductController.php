@@ -33,10 +33,4 @@ class ProductController extends Controller
         $category = $selected_product->category;
         return view('client-page/product-details', compact('selected_product', 'category'));
     }
-
-    public function view_product_photos()
-    {
-        $photos = Photos::all();
-        return view('/admin-page/view-products-photo', compact('photos'));
-    }
 }

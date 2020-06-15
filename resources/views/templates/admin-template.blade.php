@@ -65,7 +65,7 @@
             <h6 class="collapse-header">Sub-Components:</h6>
             <a class="collapse-item" href="/admin/insert-product-form">Create Products</a>
             <a class="collapse-item" href="/admin/products">View Products</a>
-            <a class="collapse-item" href="/admin/insert-product-photo-form">Insert Product's Photo</a>
+            {{-- <a class="collapse-item" href="/admin/insert-product-photo-form">Insert Product's Photo</a> --}}
             <a class="collapse-item" href="/admin/products-photo">View Products Photo</a>
           </div>
         </div>

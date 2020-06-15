@@ -93,9 +93,9 @@ Route::get('/admin/insert-user-form', 'AdminController@view_insert_user')
 Route::get('/admin/insert-product-form', 'AdminController@view_insert_products')
     ->name('admin-page.insert-product-form')
     ->middleware('is_admin');
-Route::get('/admin/insert-product-photo-form', 'AdminController@view_insert_product_photo')
-    ->name('admin-page.insert-product-photo-form')
-    ->middleware('is_admin');
+// Route::get('/admin/insert-product-photo-form', 'AdminController@view_insert_product_photo')
+//     ->name('admin-page.insert-product-photo-form')
+//     ->middleware('is_admin');
 Route::get('/admin/users/{id}/update-user-form', 'AdminController@edit_user')
     ->name('admin-page.update-user-form')
     ->middleware('is_admin');
@@ -106,9 +106,9 @@ Route::get('/admin/products/{id}/update-product-form', 'AdminController@edit')
 Route::post('/admin/insert-products', 'AdminController@create')
     ->name('admin-page.insert-products')
     ->middleware('is_admin');
-Route::post('/admin/insert-product-photo', 'AdminController@insert_product_photo')
-    ->name('admin-page.insert-product-photo')
-    ->middleware('is_admin');
+// Route::post('/admin/insert-product-photo', 'AdminController@insert_product_photo')
+//     ->name('admin-page.insert-product-photo')
+//     ->middleware('is_admin');
 Route::post('/admin/insert-user', 'AdminController@insert_user')
     ->name('admin-page.insert-user')
     ->middleware('is_admin');

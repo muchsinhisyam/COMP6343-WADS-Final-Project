@@ -20,7 +20,7 @@
 
     <h1 class="h3 mb-2 text-gray-800">View Products Photo</P></h1>
     <div class="card shadow mb-4">
-      <a href="/admin/insert-product-photo-form" class="btn btn-primary">Insert Product's Photo</a>
+      {{-- <a href="/admin/insert-product-photo-form" class="btn btn-primary">Insert Product's Photo</a> --}}
       {{-- <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
       </div> --}}

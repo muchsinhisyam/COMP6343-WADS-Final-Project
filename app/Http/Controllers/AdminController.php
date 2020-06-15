@@ -61,26 +61,26 @@ class AdminController extends Controller
     return redirect('/admin/products')->with('success', 'Product successfully added');
   }
 
-  public function insert_product_photo(Request $request)
-  {
-    // if ($request->hasFile('file')) {
-    $iteration = 1;
-    foreach ($request->file as $file) {
-      $extension = $file->getClientOriginalExtension();
-      $filename = 'ProductID-' . $request->id . '-Image-' . $iteration . '.' . $extension;
-      // $file->storeAs('public/images', $filename);
-      $path = public_path() . '/images';
-      $file->move($path, $filename);
-      $photo = new \App\Photos;
-      $photo->product_id = $request->product_name; // product_name value on <select> is product_id
-      $photo->image_name = $filename;
-      $photo->save();
+  // public function insert_product_photo(Request $request)
+  // {
+  //   // if ($request->hasFile('file')) {
+  //   $iteration = 1;
+  //   foreach ($request->file as $file) {
+  //     $extension = $file->getClientOriginalExtension();
+  //     $filename = 'ProductID-' . $request->id . '-Image-' . $iteration . '.' . $extension;
+  //     // $file->storeAs('public/images', $filename);
+  //     $path = public_path() . '/images';
+  //     $file->move($path, $filename);
+  //     $photo = new \App\Photos;
+  //     $photo->product_id = $request->product_name; // product_name value on <select> is product_id
+  //     $photo->image_name = $filename;
+  //     $photo->save();
 
-      $iteration++;
-    }
-    // }
-    return redirect('/admin/products-photo')->with('success', 'Product\'s Photo successfully added');
-  }
+  //     $iteration++;
+  //   }
+  //   // }
+  //   return redirect('/admin/products-photo')->with('success', 'Product\'s Photo successfully added');
+  // }
 
   public function insert_user(Request $request)
   {
@@ -271,5 +271,11 @@ class AdminController extends Controller
   {
     $stock_order_details = OrderDetail::with('product')->get();
     return view('admin-page/view-stock-order-details', compact('stock_order_details'));
+  }
+
+  public function view_product_photos()
+  {
+    $photos = Photos::all();
+    return view('/admin-page/view-products-photo', compact('photos'));
   }
 }
