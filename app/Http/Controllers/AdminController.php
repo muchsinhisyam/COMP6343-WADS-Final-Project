@@ -100,6 +100,66 @@ class AdminController extends Controller
     return redirect('/admin/users')->with('success', 'User successfully added');
   }
 
+  public function insertCategory(Request $request)
+  {
+    $validatedData  =  $request->validate([
+      'category_name'  => 'required|max:255'
+    ]);
+
+    $category = new Category;
+    $category->category_name = $request->category_name;
+    $category->save();
+
+    return redirect('/admin/categories')->with('success', 'Category successfully added');
+  }
+
+  public function insertColor(Request $request)
+  {
+    $validatedData  =  $request->validate([
+      'color_name'  => 'required|max:255'
+    ]);
+
+    $color = new Color;
+    $color->color_name = $request->color_name;
+    $color->save();
+
+    return redirect('/admin/colors')->with('success', 'Color successfully added');
+  }
+
+  public function editColor($id)
+  {
+    $selected_color = Color::find($id);
+    return view('admin-page/update-color-form', compact('selected_color'));
+  }
+
+  public function editCategory($id)
+  {
+    $selected_category = Category::find($id);
+    return view('admin-page/update-category-form', compact('selected_category'));
+  }
+
+  public function updateColor(Request $request, $id)
+  {
+    $validatedData  =  $request->validate([
+      'color_name'  => 'required|max:255'
+    ]);
+
+    $selected_color = Color::find($id);
+    $selected_color->update($request->all());
+    return redirect('/admin/colors')->with('success', 'Color successfully updated');
+  }
+
+  public function updateCategory(Request $request, $id)
+  {
+    $validatedData  =  $request->validate([
+      'category_name'  => 'required|max:255'
+    ]);
+
+    $selected_category = Category::find($id);
+    $selected_category->update($request->all());
+    return redirect('/admin/categories')->with('success', 'Category successfully updated');
+  }
+
   public function edit($id)
   {
     $selected_product = Product::find($id);
@@ -185,6 +245,20 @@ class AdminController extends Controller
     return redirect('/admin/products')->with('success', 'Product successfully deleted');
   }
 
+  public function deleteCategory($id)
+  {
+    $selected_category = Category::find($id);
+    $selected_category->delete($selected_category);
+    return redirect('/admin/categories')->with('success', 'Category successfully deleted');
+  }
+
+  public function deleteColor($id)
+  {
+    $selected_color = Color::find($id);
+    $selected_color->delete($selected_color);
+    return redirect('/admin/colors')->with('success', 'Color successfully deleted');
+  }
+
   public function delete_product_photo($id)
   {
     $selected_product_photo = Photos::find($id);
@@ -226,6 +300,18 @@ class AdminController extends Controller
     return view('/admin-page/view-products', compact('products'));
   }
 
+  public function view_categories()
+  {
+    $categories = Category::all();
+    return view('/admin-page/view-categories', compact('categories'));
+  }
+
+  public function view_colors()
+  {
+    $colors = Color::all();
+    return view('/admin-page/view-colors', compact('colors'));
+  }
+
   public function view_products_photo()
   {
     return view('admin-page/view-products-photo');
@@ -259,6 +345,16 @@ class AdminController extends Controller
   public function view_insert_user()
   {
     return view('admin-page/insert-user-form');
+  }
+
+  public function view_insert_category()
+  {
+    return view('admin-page/insert-category-form');
+  }
+
+  public function view_insert_color()
+  {
+    return view('admin-page/insert-color-form');
   }
 
   public function view_stock_orders()

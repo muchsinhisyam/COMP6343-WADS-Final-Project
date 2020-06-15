@@ -38,7 +38,7 @@
                                 @forelse ($selected_order_photos as $order_photo)
                                     <tr>
                                         <td class="cart_product_img">
-                                            <img src="{{ asset('custom-images/'.$order_photo->image_name) }}">
+                                            <img src="{{ asset('custom_images/'.$order_photo->image_name) }}">
                                         </td>
                                     </tr>
                                 @empty

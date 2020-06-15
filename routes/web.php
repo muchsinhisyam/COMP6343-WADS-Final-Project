@@ -78,6 +78,32 @@ Route::get('/admin', 'AdminController@index')
 Route::get('/admin/products', 'AdminController@view_products')
     ->name('admin-page.view-products')
     ->middleware('is_admin');
+Route::get('/admin/categories', 'AdminController@view_categories')
+    ->middleware('is_admin');
+Route::get('/admin/colors', 'AdminController@view_colors')
+    ->middleware('is_admin');
+Route::get('/admin/categories/{id}/update-category-form', 'AdminController@editCategory')
+    ->middleware('is_admin');
+Route::get('/admin/colors/{id}/update-color-form', 'AdminController@editColor')
+    ->middleware('is_admin');
+Route::get('/admin/insert-category-form', 'AdminController@view_insert_category')
+    ->middleware('is_admin');
+Route::get('/admin/insert-color-form', 'AdminController@view_insert_color')
+    ->middleware('is_admin');
+Route::post('/admin/insert-category', 'AdminController@insertCategory')
+    ->middleware('is_admin');
+Route::post('/admin/insert-color', 'AdminController@insertColor')
+    ->middleware('is_admin');
+Route::post('/admin/categories/{id}/update', 'AdminController@updateCategory')
+    ->middleware('is_admin');
+Route::post('/admin/colors/{id}/update', 'AdminController@updateColor')
+    ->middleware('is_admin');
+
+Route::get('/admin/categories/{id}/delete', 'AdminController@deleteCategory')
+    ->middleware('is_admin');
+Route::get('/admin/colors/{id}/delete', 'AdminController@deleteColor')
+    ->middleware('is_admin');
+
 Route::get('/admin/products-photo', 'AdminController@view_product_photos')
     ->name('admin-page.view-products-photo')
     ->middleware('is_admin');
@@ -96,19 +122,18 @@ Route::get('/admin/insert-product-form', 'AdminController@view_insert_products')
 // Route::get('/admin/insert-product-photo-form', 'AdminController@view_insert_product_photo')
 //     ->name('admin-page.insert-product-photo-form')
 //     ->middleware('is_admin');
+// Route::post('/admin/insert-product-photo', 'AdminController@insert_product_photo')
+//     ->name('admin-page.insert-product-photo')
+//     ->middleware('is_admin');
 Route::get('/admin/users/{id}/update-user-form', 'AdminController@edit_user')
     ->name('admin-page.update-user-form')
     ->middleware('is_admin');
 Route::get('/admin/products/{id}/update-product-form', 'AdminController@edit')
     ->name('admin-page.update-product-form')
     ->middleware('is_admin');
-
 Route::post('/admin/insert-products', 'AdminController@create')
     ->name('admin-page.insert-products')
     ->middleware('is_admin');
-// Route::post('/admin/insert-product-photo', 'AdminController@insert_product_photo')
-//     ->name('admin-page.insert-product-photo')
-//     ->middleware('is_admin');
 Route::post('/admin/insert-user', 'AdminController@insert_user')
     ->name('admin-page.insert-user')
     ->middleware('is_admin');
@@ -136,7 +161,6 @@ Route::get('/admin/users-info/{id}/update-form', 'AdminController@edit_users_inf
 Route::get('/admin/users-info/{id}/delete', 'AdminController@delete_users_info')
     ->name('admin-page.update-users-info')
     ->middleware('is_admin');
-
 Route::get('/admin/view-custom-orders', 'CustomOrderController@view_custom_orders')
     ->name('admin-page.view-custom-orders')
     ->middleware('is_admin');
@@ -154,8 +178,6 @@ Route::post('/admin/view-custom-orders/{id}/update', 'CustomOrderController@upda
 Route::get('/admin/view-custom-orders/{id}/edit', 'CustomOrderController@edit_custom_order')
     ->name('admin-page.edit-custom-orders')
     ->middleware('is_admin');
-
-
 Route::get('/admin/view-stock-orders', 'AdminController@view_stock_orders')
     ->name('admin-page.view-stock-orders')
     ->middleware('is_admin');
@@ -170,7 +192,6 @@ Route::get('/admin/view-stock-orders/{id}/edit', 'AdminController@edit_stock_ord
     ->middleware('is_admin');
 Route::get('/admin/view-stock-orders/{id}/download-payment', 'OrderController@download_payment_images')
     ->middleware('is_admin');
-
 Route::get('/admin/view-stock-order-details', 'AdminController@view_stock_order_details')
     ->name('admin-page.view-stock-order-details')
     ->middleware('is_admin');
