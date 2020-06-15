@@ -153,7 +153,9 @@ class CustomOrderController extends Controller
   public function view_custom_order_details($id)
   {
     $selected_order = Order::find($id);
+    $selected_customer = User::where('id', '=', $selected_order->user_id)->first();
+    $selected_customer_info = CustomerInfo::where('user_id', '=', $selected_customer->id)->first();
     $selected_order_photos = CustomPhotos::where('order_id', '=', $selected_order->id)->get();
-    return view('client-page/custom-order-details', compact('selected_order', 'selected_order_photos'));
+    return view('client-page/custom-order-details', compact('selected_order', 'selected_order_photos', 'selected_customer_info', 'selected_order_photos'));
   }
 }

@@ -35,10 +35,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($selected_order as $custom_order)
+                                @forelse ($selected_order_photos as $order_photo)
                                     <tr>
                                         <td class="cart_product_img">
-                                            {{-- <img src="{{ asset('custom-images/'.$selected_order_photos->image_name) }}"> --}}
+                                            <img src="{{ asset('custom-images/'.$order_photo->image_name) }}">
                                         </td>
                                     </tr>
                                 @empty
@@ -52,21 +52,19 @@
                 </div>
                 <div class="col-12 col-lg-4">
                     <div class="cart-summary">
-                        <h5>Order Details</h5>
+                        <h5>Custom Order Details</h5>
                         <ul class="summary-table">
-                            <li><span>subtotal:</span> <span>IDR</span></li>
-                            <li><span>delivery:</span> <span>Free</span></li>
-                            <li><span>total:</span> <span>IDR</span></li>
+                            <li><span>Description:</span> <span>{{ $selected_order->description }}</span></li>
                         </ul>
                         <h5>Shipment Details</h5>
                         <ul class="summary-table">
-                            {{-- <li><span>First Name:</span> <span>{{ $custom_order->user->customer_info->first_name }}</span></li>
-                            <li><span>Last Name:</span> <span>{{ $custom_order->user->customer_info->last_name }}</span></li>
-                            <li><span>Email:</span> <span>{{ $custom_order->user->customer_info->email }}</span></li>
-                            <li><span>Phone:</span> <span>{{ $custom_order->user->customer_info->phone }}</span></li>
-                            <li><span>City:</span> <span>{{ $custom_order->user->customer_info->city }}</span></li>
-                            <li><span>Zip Code:</span> <span>{{ $custom_order->user->customer_info->zip_code }}</span></li>
-                            <li><span>Address:</span> <span>{{ $custom_order->user->customer_info->address }}</span></li> --}}
+                            <li><span>First Name:</span> <span>{{ $selected_customer_info->first_name }}</span></li>
+                            <li><span>Last Name:</span> <span>{{ $selected_customer_info->last_name }}</span></li>
+                            <li><span>Email:</span> <span>{{ $selected_customer_info->email }}</span></li>
+                            <li><span>Phone:</span> <span>{{ $selected_customer_info->phone }}</span></li>
+                            <li><span>City:</span> <span>{{ $selected_customer_info->city }}</span></li>
+                            <li><span>Zip Code:</span> <span>{{ $selected_customer_info->zip_code }}</span></li>
+                            <li><span>Address:</span> <span>{{ $selected_customer_info->address }}</span></li>
                         </ul>
                     </div>
                 </div>
