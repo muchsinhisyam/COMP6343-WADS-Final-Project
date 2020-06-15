@@ -28,7 +28,7 @@
                             </div>
                         @endif
                         
-                        <form action="/pay{{ $selected_order->id }}"  method="Post" enctype="multipart/form-data">
+                        <form action="/pay/{{ $selected_order->id }}"  method="Post" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <div class="row">
                                 <div class="col-12 mb-3">

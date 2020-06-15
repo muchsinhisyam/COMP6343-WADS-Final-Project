@@ -23,7 +23,8 @@ class ProductController extends Controller
     public function view_products_by_category($id)
     {
         $category_products = Product::where('category_id', '=', $id)->orderBy('created_at', 'DESC')->paginate(8);
-        return view('client-page/products-category', compact('category_products'));
+        $countProducts = count($category_products);
+        return view('client-page/products-category', compact('category_products', 'countProducts'));
     }
 
     public function view_product_details(Request $request, $id)

@@ -16,10 +16,21 @@ class LoginController extends Controller
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
-            $success['token'] =  $user->createToken('nApp')->accessToken;
-            return response()->json(['success' => $success], $this->successStatus);
+            $success['name'] = $user->name;
+            $success['role'] = $user->role;
+            if ($user->role === 'Admin') {
+                return redirect()->intended('admin'); //redirect to admin panel
+            }
+            return redirect()->intended('/');
+
+            // return response()->json(['success' => $success], $this->successStatus);
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth/login');
     }
 }

@@ -68,7 +68,7 @@ Route::get('/detail-custom-order/{id}', 'CustomOrderController@view_custom_order
     ->middleware('auth', 'is_ordered_by_logged_user');
 Route::get('/pay/{id}', 'OrderController@view_pay')
     ->middleware('auth', 'is_ordered_by_logged_user');
-Route::post('/pay{id}', 'OrderController@insertTransactionPhotos')
+Route::post('/pay/{id}', 'OrderController@insertTransactionPhotos')
     ->middleware('auth', 'is_ordered_by_logged_user');
 
 // Admin-Page Routing
@@ -78,7 +78,7 @@ Route::get('/admin', 'AdminController@index')
 Route::get('/admin/products', 'AdminController@view_products')
     ->name('admin-page.view-products')
     ->middleware('is_admin');
-Route::get('/admin/products-photo', 'ProductController@view_product_photos')
+Route::get('/admin/products-photo', 'AdminController@view_product_photos')
     ->name('admin-page.view-products-photo')
     ->middleware('is_admin');
 Route::get('/admin/users', 'AdminController@view_users')

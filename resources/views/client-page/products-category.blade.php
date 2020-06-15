@@ -29,7 +29,7 @@
                     <div class="product-topbar d-xl-flex align-items-end justify-content-between">
                         <!-- Total Products -->
                         <div class="total-products">
-                            <p>Showing 1-8 0f 25</p>
+                            <p>Showing {{ $countProducts }} 0f {{ $countProducts }}</p>
                         </div>
                         <!-- Sorting -->
                         <div class="product-sorting d-flex">

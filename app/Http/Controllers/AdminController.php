@@ -36,7 +36,7 @@ class AdminController extends Controller
       'color_id' => 'required',
       'price' => 'required|digits_between:0,2147483646|numeric',
       'qty' => 'required|digits_between:0,2147483646|numeric',
-      'description' => 'required|max:255'
+      'description' => 'required'
       // Photo Size need to be limited
     ]);
 
@@ -132,7 +132,7 @@ class AdminController extends Controller
       'product_name'  => 'required|max:255',
       'price' => 'required|digits_between:0,2147483646|numeric',
       'qty' => 'required|digits_between:0,2147483646|numeric',
-      'description' => 'required|max:255'
+      'description' => 'required'
     ]);
 
     $selected_product = Product::find($id);
@@ -160,7 +160,7 @@ class AdminController extends Controller
       'email'  => 'required|max:255',
       'phone' => 'required|regex:/(08)[0-9]{8}/|max:14',
       'zip_code' => 'required|max:5',
-      'address' => 'required|max:255'
+      'address' => 'required'
     ]);
 
     $selected_users_info = CustomerInfo::find($id);

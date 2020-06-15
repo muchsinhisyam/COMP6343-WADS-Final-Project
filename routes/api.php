@@ -16,8 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 // Auth::routes(['verify' => true]);
 
-Route::post('register', 'API\RegisterController@register');
-Route::post('login', 'API\LoginController@login');
+Route::post('register', 'API\RegisterController@create');
+Route::group(['middleware' => ['web']], function () {
+    Route::get('login', 'API\LoginController@showLoginForm')
+        ->name('login');
+    Route::post('login', 'API\LoginController@login');
+});
+
+Route::get('register', 'API\RegisterController@showRegistrationForm')
+    ->name('register');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
