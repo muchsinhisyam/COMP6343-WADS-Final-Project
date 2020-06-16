@@ -15,13 +15,10 @@ Group members (L4AC/Group 8):
 - Muchsin Hisyam - 2201797430 [(Github)](https://github.com/muchsinhisyam)
 - Naman Vohra - 2201798420 [(Github)](https://github.com/namanv19)
 
-## About CustomNiture
-
+## About This Project (CustomNiture)
 CustomNiture is a web app which allows you to customize your own furniture according to your taste and have it delivered to your resident.
 
 CustomNiture Website: [(http://customniture.me/)](http://customniture.me/)
-
-## About This Project
 
 For the Front-end we used Laravel Blade Framework, and the Back-end we used Laravel. Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
@@ -35,15 +32,27 @@ For the Front-end we used Laravel Blade Framework, and the Back-end we used Lara
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Installation (Package)
+- We used LaravelDaily/laravel-invoices package for the invoice generate process. For the details about the package, you can click [here.](https://github.com/LaravelDaily/laravel-invoices)
+
+- First install LaravelDaily/laravel-invoices package with this command.
+
+		$ composer require laraveldaily/laravel-invoices
+        
+- After installing LaravelDaily/laravel-invoices package, run this command.
+
+		$ php artisan invoices:install
+
 ## Features
 
 - Simple E-commerce UI Design.
-- Admin Functionallity.
 - Easier Transactions.
+- Custom Furniture Order Available.
+- Users can download/generate Order's Invoice.
+- Admin Functionality.
 - Products Managements.
 - Orders Managements.
 - Users Managements.
-- Users can download Order's Invoice.
 - Admin can download User's payment photos from their orders.
 - Admin can download User's custom order photos / illustration from the form that they have submitted.
 
