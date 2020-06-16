@@ -12,8 +12,8 @@
 This project was made for COMP6343 Web Application Development and Security Class project. 
 Group members (L4AC/Group 8):
 
-- Muchsin Hisyam - 2201797430
-- Naman Vohra - 2201798420
+- Muchsin Hisyam - 2201797430 [(Github)](https://github.com/muchsinhisyam)
+- Naman Vohra - 2201798420 [(Github)](https://github.com/namanv19)
 
 ## About CustomNiture
 
