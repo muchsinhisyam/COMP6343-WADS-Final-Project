@@ -47,11 +47,11 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - Admin can download User's payment photos from their orders.
 - Admin can download User's custom order photos / illustration from the form that they have submitted.
 
-## Steo-by-Step to Purchasing a Furniture / Stock Order
+## Ste-by-Step to Purchasing a Furniture / Stock Order
 
 - 
 
-## Steo-by-Step to Purchasing a Custom Furniture / Custom Order
+## Step-by-Step to Purchasing a Custom Furniture / Custom Order
 
 - Click "Custom Order" button on the web footer.
 - Make sure you have an account because you'll need to login first, otherwise you need to create an account first.
