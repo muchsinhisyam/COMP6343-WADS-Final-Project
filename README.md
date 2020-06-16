@@ -47,20 +47,20 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - Admin can download User's payment photos from their orders.
 - Admin can download User's custom order photos / illustration from the form that they have submitted.
 
-## Ste-by-Step to Purchasing a Furniture / Stock Order
+## Step-by-Step to Purchasing a Furniture / Stock Order
 
 - 
 
 ## Step-by-Step to Purchasing a Custom Furniture / Custom Order
 
-- Click "Custom Order" button on the web footer.
-- Make sure you have an account because you'll need to login first, otherwise you need to create an account first.
-- Fill the custom order form. (Please give us correct info about your personal data (eg. Name, Phone no, etc). and specify your custom furniture that you want to order by fillin the details on the description box, and upload some photos for the blueprint or custom furniture illustration).
-- Once your done submit the form, you'll be directed to the Orders page.
-- Wait for our confirmation, we'll contact you from your phone number for asking your custom order details and illustration.
-- Once we get your custom order illustrations, we give the price and invoice of the custom order.
-- Pay the custom order, and your order will be processed.
-- Once the order finished, your custom order will be sent to your resident.
+1. Click "Custom Order" button on the web footer.
+2. Make sure you have an account because you'll need to login first, otherwise you need to create an account first.
+3. Fill the custom order form. (Please give us correct info about your personal data (eg. Name, Phone no, etc). and specify your custom furniture that you want to order by fillin the details on the description box, and upload some photos for the blueprint or custom furniture illustration).
+4. Once your done submit the form, you'll be directed to the Orders page.
+5. Wait for our confirmation, we'll contact you from your phone number for asking your custom order details and illustration.
+6. Once we get your custom order illustrations, we give the price and invoice of the custom order.
+7. Pay the custom order, and your order will be processed.
+8. Once the order finished, your custom order will be sent to your resident.
 
 ## Admin Controls / Privileges
 - Products Managements.
