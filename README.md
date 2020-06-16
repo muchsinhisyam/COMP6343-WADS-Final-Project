@@ -68,3 +68,28 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - Users Managements.
 - Download User's payment photos from their orders.
 - Download User's custom order photos / illustration from the form that they have submitted.
+
+## Step-by-Step to Create/Show/Update/Delete Products
+
+1. Login to the web with admin users.
+2. Click 'Products' on the sidebar and choose 'Create Products', and fill the product form (filling the product details and upload product photos), Make sure the  category and colors datas is already added before creating a new products, otherwise the form dropdown data on the 'Color' and 'Category' is empty/not shown.
+3. Once new product added, the web will direct you to the view all products page.
+4. If you want to delete or update product's data, you can click 'Delete' or 'Edit' button on the 'Action' column.
+5. If you want to show all products data, click 'Products' on the sidebar and choose 'View All Products'.
+
+## Step-by-Step to Create/Show/Update/Delete Users or Users Info
+
+1. Login to the web with admin users.
+2. Click 'Users' on the sidebar and choose 'Create User', and fill the user form.
+3. Once new user added, the web will direct you to the view all users page.
+4. If you want to delete or update user's data, you can click 'Delete' or 'Edit' button on the 'Action' column.
+5. If you want to show all users data, click 'Users' on the sidebar and choose 'View All Users'.
+6. Once the new user is created/registered, the User's Info data will be created but its still null, in order to fill the User's Info, the customer need to fill their info details when ordering some orders or Admin can edit or delete it from 'Delete' or 'Edit' button on the 'Action' column at 'View All User's Info'.
+
+## Step-by-Step to Show/Delete Orders (Stock Orders/Custom Orders) and Download Their Payment Photos/Custom Order Photos
+
+1. Login to the web with admin users.
+2. If you want to show all user's orders data, click 'Orders' on the sidebar and choose what type of order you want to see (Stock Orders or Custom Orders).
+3. If you want to download the custom photos, you need to open it specifically on the 'Orders' on the sidebar and choose 'View All Custom Orders'. Then click 'Download Custom Photos' on the 'Action' column on specific order column that you want to download.
+4. If you want to download the payment photos, click 'Orders' on the sidebar and choose what type of order you want to see (Stock Orders or Custom Orders). Then click 'Download Payment Photos' on the 'Action' column on specific order column that you want to download.
+
