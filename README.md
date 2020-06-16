@@ -93,3 +93,16 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 3. If you want to download the custom photos, you need to open it specifically on the 'Orders' on the sidebar and choose 'View All Custom Orders'. Then click 'Download Custom Photos' on the 'Action' column on specific order column that you want to download.
 4. If you want to download the payment photos, click 'Orders' on the sidebar and choose what type of order you want to see (Stock Orders or Custom Orders). Then click 'Download Payment Photos' on the 'Action' column on specific order column that you want to download.
 
+## Website Design
+
+Homepage Design
+- Template Name: Amado
+- Template URL: https://colorlib.com/wp/template/amado/
+- Author: Colorlib.com
+
+Admin Page Design
+- Template Name: SB Admin 2
+- Template URL: https://startbootstrap.com/themes/sb-admin-2/
+- Author: Startbootstrap.com
+
+All rights reserved to their respective owners.
