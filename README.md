@@ -58,7 +58,13 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 ## Step-by-Step to Purchasing a Furniture / Stock Order
 
-- 
+1. Firstly, log in into the website. If you don't have an account, you can create one by clicking 'Create an account' button'.
+2. Next, click the 'PRODUCTS' button on the sidebar.
+3. Users can choose the type of furniture (like tables, chairs, etc) from Categories. Users can either click the small cart symbol located beside each product's name or click the product name to look at its details first. If the customer clicks the cart symbol on the products page (not product details), one quantity of the corresponding product will be added to user's cart. Otherwise, the user can select the quantity of the chosen product to be added to the cart on the product details page.
+4. The user can also update the cart if they goes to cart page by clicking "CART" button on the sidebar. This is the same page where the user can checkout. If the customer clicks the checkout button, they will have to check/fill  the details such as address, city, zip code, etc. The user may also update the details. After checking the form details, the customer can click the checkout button located on the same page.
+5. The customer can check the order status by visiting the orders page. This page can be visited by clicking the 'ORDERS' button on the sidebar. Apart from checking the status, the client can view their transaction history.
+6. Next, the client can view the order details of a particular order by clicking the 'View Details button'. Here, the total price of ordered products and the shipping details are displayed. Lastly, the order's invoice can be generated if the order status is ''Payment is on verification" or means that the user already pay the order and upload payment photo. It means that the order has been verified by the admin. 
+8. Once the order finished, the order will be sent to your resident.
 
 ## Step-by-Step to Purchasing a Custom Furniture / Custom Order
 
@@ -68,8 +74,9 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 4. Once your done submit the form, you'll be directed to the Orders page.
 5. Wait for our confirmation, we'll contact you from your phone number for asking your custom order details and illustration.
 6. Once we get your custom order illustrations, we give the price and invoice of the custom order.
-7. Pay the custom order, and your order will be processed.
-8. Once the order finished, your custom order will be sent to your resident.
+5. The customer can check the order status by visiting the orders page. This page can be visited by clicking the 'ORDERS' button on the sidebar. Apart from checking the status, the client can view their transaction history.
+7. If the order status is 'Waiting for Payment' the customer must pay the custom order, afterwards the custom order will be processed.
+8. Once the order finished, the custom order will be sent to your resident.
 
 ## Admin Controls / Privileges
 - Products Managements.
