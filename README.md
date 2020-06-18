@@ -114,12 +114,12 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 ###- Database Design
 <p align="center"><img src="https://cdn.discordapp.com/attachments/685719106065924136/723053510614188043/unknown.png"></p>
 
-###- Homepage Design
+### - Homepage Design
 - Template Name: Amado
 - Template URL: https://colorlib.com/wp/template/amado/
 - Author: Colorlib.com
 
-###- Admin Page Design
+### - Admin Page Design
 - Template Name: SB Admin 2
 - Template URL: https://startbootstrap.com/themes/sb-admin-2/
 - Author: Startbootstrap.com
